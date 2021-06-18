@@ -1,33 +1,27 @@
 import { Controller, Get, Post, Put, Param, Body } from "@nestjs/common";
 import { HeroesDto } from "./dto/heroes.dto";
+import { HeroesService } from "./heroes.service";
 
 @Controller('heroes')
 export class HeroesController {
 
-    // Used for testing purposes, should be deleted after
-    // the database starts being used
-    heroes: HeroesDto[] = [
-        new HeroesDto("Thor Odinson", "Aesir", "Unknown", "Male", "Warrior", "Gods"),
-        new HeroesDto("Odin Borson", "Aesir", "Unknown", "Male", "Warrior", "Gods"),
-        new HeroesDto("Loki Farbauti", "Jotun", "Unknown", "Male", "Warrior", "Gods")
-    ]
+    service = new HeroesService();
 
     @Get()
     getHeroes(): HeroesDto[] {
-        return this.heroes;
+        return this.service.getHeroes();
     }
 
-    @Get('/:heroId')
-    getHeroById(
-        @Param('heroId') heroId: number): HeroesDto {
-        return this.heroes[heroId]
-    }
+    // @Get('/:heroId')
+    // getHeroById(
+    //     @Param('heroId') heroId: number): HeroesDto {
+    //     return this.heroes[heroId]
+    // }
 
-    @Post()
-    createHero(@Body() body: HeroesDto){
-        console.log(body)
-        return `Create Hero: ${JSON.stringify(body)}` 
-    }
+    // @Post()
+    // createHero(@Body() body: HeroesDto){
+    //     this.heroes.push(body)
+    // }
 
     @Put(':/heroId')
     updateHero(
