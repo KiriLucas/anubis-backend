@@ -5,18 +5,18 @@ import { HeroesDto } from './dto/heroes.dto';
 export class HeroesService {
     
     // Used for testing purposes, should be deleted after
-    // the database starts being used
+    // the database starts being used 
     heroes: HeroesDto[] = [
         new HeroesDto("Thor Odinson", "Aesir", "Unknown", "Male", "Warrior", "Gods"),
         new HeroesDto("Odin Borson", "Aesir", "Unknown", "Male", "Warrior", "Gods"),
         new HeroesDto("Loki Farbauti", "Jotun", "Unknown", "Male", "Warrior", "Gods")
     ]
 
-    getHeroes(): HeroesDto[]{
+    getHeroesList(): HeroesDto[]{
         return this.heroes;
     }
 
-    getHero(id: number): HeroesDto{
+    getHeroById(id: number): HeroesDto{
         return this.heroes[id];
     }
 
