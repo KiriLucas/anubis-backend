@@ -13,7 +13,6 @@ export class HeroesService {
     ]
 
     getHeroes(): HeroesDto[]{
-        console.log('FOI')
         return this.heroes;
     }
 
