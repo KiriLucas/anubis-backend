@@ -1,5 +1,9 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="#" target="blank"><img src="https://i.pinimg.com/originals/45/b8/f0/45b8f060a14fa5fed63324aeb7c2a7f6.png" width="120" alt="" /></a>
+  <a href="#" target="blank"><img src="https://i.pinimg.com/originals/19/b9/a6/19b9a6da2d360ff522eb93ff0b871447.png" width="120" alt="" /></a>
+  <a href="#" target="blank"><img src="https://i.pinimg.com/originals/71/b3/ee/71b3ee58d1ce3b9309d01ac267f3a348.png" width="120" alt="" /></a>
+  <a href="#" target="blank"><img src="https://i.pinimg.com/originals/8a/98/9d/8a989d9ca809688b5ec520f126a9d3bf.png" width="130" alt="" /></a>
+
 </p>
 
   <p align="center">A tabletop rpg management tool created out of need to improve a dungeon master's work and help players keep track of their characters and adventures.</p>
