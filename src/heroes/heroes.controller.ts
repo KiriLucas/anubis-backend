@@ -19,8 +19,8 @@ export class HeroesController {
 
     @Get('/:heroId')
     getHeroById(
-        @Param('heroId') heroId: String) {
-        return "Get Hero By Id"
+        @Param('heroId') heroId: number): HeroesDto {
+        return this.heroes[heroId]
     }
 
     @Post()
