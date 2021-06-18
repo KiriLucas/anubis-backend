@@ -4,12 +4,11 @@ import { HeroesService } from "./heroes.service";
 
 @Controller('heroes')
 export class HeroesController {
-
-    service = new HeroesService();
+    constructor(private readonly heroesService: HeroesService){}
 
     @Get()
-    getHeroes(): HeroesDto[] {
-        return this.service.getHeroes();
+    getHeroesList(): HeroesDto[] {
+        return this.heroesService.getHeroesList();
     }
 
     // @Get('/:heroId')
@@ -18,10 +17,10 @@ export class HeroesController {
     //     return this.heroes[heroId]
     // }
 
-    // @Post()
-    // createHero(@Body() body: HeroesDto){
-    //     this.heroes.push(body)
-    // }
+    @Post()
+    createHero(@Body() body: HeroesDto){
+        this.heroesService.newHero(body)
+    }
 
     @Put(':/heroId')
     updateHero(

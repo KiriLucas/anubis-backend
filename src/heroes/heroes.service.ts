@@ -12,11 +12,11 @@ export class HeroesService {
         new HeroesDto("Loki Farbauti", "Jotun", "Unknown", "Male", "Warrior", "Gods")
     ]
 
-    getHeroes(): HeroesDto[]{
+    getHeroesList(): HeroesDto[]{
         return this.heroes;
     }
 
-    getHero(id: number): HeroesDto{
+    getHeroById(id: number): HeroesDto{
         return this.heroes[id];
     }
 
