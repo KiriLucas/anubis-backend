@@ -1,25 +1,19 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
 
-@Table({tableName: 'heroes'})
-export class HeroesModel extends Model<HeroesModel> {
+@Table({tableName: 'skills'})
+export class SkillsModel extends Model<SkillsModel> {
 
     @Column({ type: DataType.STRING, allowNull: false, field: 'name' })
     name: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'race' })
-    race: string;
+    @Column({ type: DataType.STRING, allowNull: false, field: 'type' })
+    type: string;
 
-    @Column({ type: DataType.INTEGER, allowNull: true, field: 'age' })
-    age: number;
+    @Column({ type: DataType.STRING, allowNull: true, field: 'nature' })
+    nature: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'gender' })
-    gender: string;
-
-    @Column({ type: DataType.STRING, allowNull: false, field: 'job'})
-    job: string;
-
-    @Column({ type: DataType.STRING, allowNull: false, field: 'origin' })
-    origin: string;
+    @Column({ type: DataType.TEXT, allowNull: false, field: 'description' })
+    description: string;
 
     @Column({ type: DataType.STRING, allowNull: false, field: 'created_by' })
     createdBy?: string;

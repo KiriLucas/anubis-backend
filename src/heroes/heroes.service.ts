@@ -18,6 +18,9 @@ export class HeroesService {
     //     return this.heroes[id];
     // }
 
+    /**
+     * TODO: Create constructor for this
+     **/ 
     newHero(body: HeroesDto){
         const model = new this.heroesModel();
         Object.assign(model, body)
