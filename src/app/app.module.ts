@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { HeroesController } from "../heroes/heroes.controller"
-import { PowersController } from '../skills/powers.controller';
+import { SkillsController } from '../skills/skills.controller';
 import { HeroPowersController } from '../skills/heroes.controller';
 import { HeroesService } from 'src/heroes/heroes.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { HeroesModel } from 'src/heroes/heroes.model';
 import { ConfigModule } from '@nestjs/config';
+import { SkillsModel } from 'src/skills/skills.model';
+import { SkillsService } from 'src/skills/skills.service';
 
 @Module({
   imports: [
@@ -20,9 +22,9 @@ import { ConfigModule } from '@nestjs/config';
       autoLoadModels: true,
       synchronize: true,
     }),
-    SequelizeModule.forFeature([HeroesModel]),
+    SequelizeModule.forFeature([HeroesModel, SkillsModel]),
   ],
-  controllers: [HeroesController, PowersController, HeroPowersController],
-  providers: [HeroesService]
+  controllers: [HeroesController, SkillsController, HeroPowersController],
+  providers: [HeroesService, SkillsService]
 })
 export class AppModule {}
