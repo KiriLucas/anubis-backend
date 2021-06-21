@@ -7,7 +7,7 @@ export class HeroesController {
     constructor(private readonly heroesService: HeroesService){}
 
     @Get()
-    getHeroesList(): HeroesDto[] {
+    async getHeroesList(): Promise<HeroesDto[]> {
         return this.heroesService.getHeroesList();
     }
 
@@ -19,7 +19,7 @@ export class HeroesController {
 
     @Post()
     createHero(@Body() body: HeroesDto){
-        this.heroesService.newHero(body)
+        return this.heroesService.newHero(body)
     }
 
     @Put(':/heroId')

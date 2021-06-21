@@ -22,14 +22,14 @@ export class HeroesModel extends Model<HeroesModel> {
     origin: string;
 
     @Column({ type: DataType.STRING, allowNull: false, field: 'created_by' })
-    createdBy: string;
+    createdBy?: string;
 
     @Column({ type: DataType.DATE, allowNull: false, field: 'created_at' })
-    createdAt: Date;
+    createdAt?: Date;
 
     @Column({ type: DataType.STRING, allowNull: false, field: 'updated_by' })
-    updatedBy: string;
+    updatedBy?: string;
 
     @Column({ type: DataType.DATE, allowNull: false, field: 'updated_at'  })
-    updatedAt: Date;
+    updatedAt?: Date;
 }
