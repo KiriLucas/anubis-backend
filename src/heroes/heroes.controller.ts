@@ -22,11 +22,11 @@ export class HeroesController {
         return this.heroesService.newHero(body)
     }
 
-    @Put(':/heroId')
-    updateHero(
-        @Param('heroID') heroId: string,
-        @Body() body){
-        return "Update Hero"
-    }
+    // @Put(':/heroId')
+    // updateHero(
+    //     @Param('heroID') heroId: string,
+    //     @Body() body){
+    //     return "Update Hero"
+    // }
 }
 
