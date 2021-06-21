@@ -27,9 +27,9 @@ export class HeroesModel extends Model<HeroesModel> {
     @Column({ type: DataType.DATE, allowNull: false, field: 'created_at' })
     createdAt?: Date;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'updated_by' })
+    @Column({ type: DataType.STRING, allowNull: true, field: 'updated_by' })
     updatedBy?: string;
 
-    @Column({ type: DataType.DATE, allowNull: false, field: 'updated_at'  })
+    @Column({ type: DataType.DATE, allowNull: true, field: 'updated_at'  })
     updatedAt?: Date;
 }

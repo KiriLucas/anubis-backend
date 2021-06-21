@@ -19,14 +19,12 @@ export class HeroesService {
     // }
 
     newHero(body: HeroesDto){
-        let model: HeroesModel = new HeroesModel();
+        const model = new this.heroesModel();
+        Object.assign(model, body)
+        model.createdAt = new Date();
+        model.createdBy = "User";
 
-        Object.assign(body, model)
-        // model.createdAt = new Date()
-
-        // Object.assign(body, model)
-        return model;
-        // this.heroesModel.create(model)
+        return model.save()
     }
 
 }
