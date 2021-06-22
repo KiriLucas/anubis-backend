@@ -1,14 +1,15 @@
 import { Controller, Get, Post, Put, Param, Body } from "@nestjs/common";
-import { HeroesDto } from "./dto/heroes.dto";
-import { HeroesService } from "./heroes.service";
+import { HeroDto } from "../dto/hero.dto";
+import { HeroService } from "./hero.service";
+
 
 @Controller('heroes')
-export class HeroesController {
-    constructor(private readonly heroesService: HeroesService){}
+export class HeroController {
+    constructor(private readonly heroService: HeroService){}
 
     @Get()
-    async getHeroesList(): Promise<HeroesDto[]> {
-        return this.heroesService.getHeroesList();
+    async getHeroesList(): Promise<HeroDto[]> {
+        return this.heroService.getHeroesList();
     }
 
     // @Get('/:heroId')
@@ -18,8 +19,8 @@ export class HeroesController {
     // }
 
     @Post()
-    createHero(@Body() body: HeroesDto){
-        return this.heroesService.newHero(body)
+    createHero(@Body() body: HeroDto){
+        return this.heroService.newHero(body)
     }
 
     // @Put(':/heroId')

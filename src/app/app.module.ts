@@ -1,13 +1,16 @@
+import { NpcService } from '../characters/npc/npc.service';
+import { NpcController } from '../characters/npc/npc.controller';
 import { Module } from '@nestjs/common';
-import { HeroesController } from "../heroes/heroes.controller"
 import { SkillsController } from '../skills/skills.controller';
-import { HeroPowersController } from '../skills/heroes.controller';
-import { HeroesService } from 'src/heroes/heroes.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { HeroesModel } from 'src/heroes/heroes.model';
 import { ConfigModule } from '@nestjs/config';
 import { SkillsModel } from 'src/skills/skills.model';
 import { SkillsService } from 'src/skills/skills.service';
+import { NpcModel } from 'src/characters/npc/npc.model';
+import { HeroModel } from 'src/characters/hero/hero.model';
+import { HeroController } from 'src/characters/hero/hero.controller';
+import { HeroService } from 'src/characters/hero/hero.service';
+import { HeroPowersController } from 'src/skills/hero.controller';
 
 @Module({
   imports: [
@@ -22,9 +25,17 @@ import { SkillsService } from 'src/skills/skills.service';
       autoLoadModels: true,
       synchronize: true,
     }),
-    SequelizeModule.forFeature([HeroesModel, SkillsModel]),
+    SequelizeModule.forFeature([HeroModel, SkillsModel, NpcModel]),
   ],
-  controllers: [HeroesController, SkillsController, HeroPowersController],
-  providers: [HeroesService, SkillsService]
+  controllers: [
+    NpcController,
+    HeroController,
+    SkillsController,
+    HeroPowersController],
+
+  providers: [
+    NpcService,
+    HeroService,
+    SkillsService]
 })
-export class AppModule {}
+export class AppModule { }
