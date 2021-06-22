@@ -14,6 +14,10 @@ export class SkillsService {
         return this.skillsModel.findAll();
     }
 
+    async getSkillById(id): Promise<SkillsModel> {
+        return this.skillsModel.findOne(id);
+    }
+
     createSkill(body: SkillsDto){
         const model = new this.skillsModel();
         Object.assign(model, body)
@@ -24,5 +28,11 @@ export class SkillsService {
         return model.save()
     }
 
+    async updateSkill(id: number, body: SkillsDto){ //
+        const model =  await this.getSkillById(id);
+        Object.assign(model, body)
+
+        return await model.save();
+    }
 
 }

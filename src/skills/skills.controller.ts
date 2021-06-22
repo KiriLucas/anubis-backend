@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Put, Body } from "@nestjs/common";
+import { Controller, Get, Post, Put, Body, Param } from "@nestjs/common";
+import { Console } from "console";
 import { SkillsDto } from "./dto/skills.dto";
 import { SkillsService } from "./skills.service";
 
@@ -26,5 +27,10 @@ export class SkillsController {
     // updatePower(){
     //     return "Update Power"
     // }
+
+    @Put('/:skillId/')
+    async updateSkill(@Param('skillId') params, @Body() body: SkillsDto) {
+        return this.skillsService.updateSkill(1, body)
+    }
 
 }
