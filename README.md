@@ -45,4 +45,4 @@ As for now, only the backend will be done, but I do intend on creating a fronten
    <br/>- Combat
    <br/>- Travelling
 
-More goals might be added to each development stage
+More goals might be added to each development stage, but if you want to take a closer look of what I'm doing, <b><a href="https://github.com/KiriLucas/tabletop-rpg-tool/blob/main/TODO.md">check my todo list here.</a></b>
