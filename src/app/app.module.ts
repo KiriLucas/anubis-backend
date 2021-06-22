@@ -10,7 +10,7 @@ import { NpcModel } from 'src/characters/npc/npc.model';
 import { HeroModel } from 'src/characters/hero/hero.model';
 import { HeroController } from 'src/characters/hero/hero.controller';
 import { HeroService } from 'src/characters/hero/hero.service';
-import { HeroPowersController } from 'src/skills/hero.controller';
+import { HeroPowersController } from 'src/skills/heroes.controller';
 
 @Module({
   imports: [

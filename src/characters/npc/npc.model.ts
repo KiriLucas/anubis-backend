@@ -15,11 +15,14 @@ export class NpcModel extends Model<NpcModel> {
     @Column({ type: DataType.STRING, allowNull: false, field: 'gender' })
     gender: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'job'})
-    job: string;
+    @Column({ type: DataType.STRING, allowNull: true, field: 'occupation'})
+    occupation: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'origin' })
-    origin: string;
+    @Column({ type: DataType.STRING, allowNull: false, field: 'location' })
+    location: string;
+
+    @Column({ type: DataType.TEXT, allowNull: false, field: 'description' })
+    description: string;
 
     @Column({ type: DataType.STRING, allowNull: false, field: 'created_by' })
     createdBy?: string;
