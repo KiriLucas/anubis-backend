@@ -1,4 +1,4 @@
-export class HeroesDto {
+export class HeroDto {
     name: string;
     race: string;
     age: number;

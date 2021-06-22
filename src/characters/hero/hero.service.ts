@@ -1,0 +1,33 @@
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
+import { HeroDto } from '../dto/hero.dto';
+import { HeroModel } from './hero.model';
+
+@Injectable()
+export class HeroService {
+
+    constructor(@InjectModel(HeroModel)
+    private heroModel: typeof HeroModel) { // Difference between that and: private heroesModel: HeroesModel
+    }
+
+    async getHeroesList(): Promise<HeroDto[]>{
+        return this.heroModel.findAll();
+    }
+
+    // getHeroById(id: number): HeroesDto{
+    //     return this.heroes[id];
+    // }
+
+    /**
+     * TODO: Create constructor for this
+     **/ 
+    newHero(body: HeroDto){
+        const model = new this.heroModel();
+        Object.assign(model, body)
+        model.createdAt = new Date();
+        model.createdBy = "User";
+
+        return model.save()
+    }
+
+}
