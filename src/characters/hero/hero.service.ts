@@ -21,11 +21,11 @@ export class HeroService {
     /**
      * TODO: Create constructor for this
      **/ 
-    newHero(body: HeroDto){
+    createHero(body: HeroDto){
         const model = new this.heroModel();
         Object.assign(model, body)
         model.createdAt = new Date();
-        model.createdBy = "User";
+        model.createdBy = 'User';
 
         return model.save()
     }
