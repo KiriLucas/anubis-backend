@@ -1,7 +1,7 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
 
 @Table({tableName: 'skills'})
-export class SkillsModel extends Model<SkillsModel> {
+export class SkillModel extends Model<SkillModel> {
 
     @Column({ type: DataType.STRING, allowNull: false, field: 'name' })
     name: string;
