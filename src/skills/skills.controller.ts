@@ -18,8 +18,8 @@ export class SkillsController {
     }
 
     @Put('/:skillId/')
-    async updateSkill(@Param('skillId') params, @Body() body: SkillsDto) {
-        return this.skillsService.updateSkill(1, body)
+    async updateSkill(@Param('skillId') id, @Body() body: SkillsDto) {
+        return this.skillsService.updateSkill(id, body)
     }
 
 }

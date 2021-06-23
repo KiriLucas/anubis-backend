@@ -7,13 +7,11 @@ import { ConfigModule } from '@nestjs/config';
 import { SkillsModel } from 'src/skills/skills.model';
 import { SkillsService } from 'src/skills/skills.service';
 import { NpcModel } from 'src/characters/npc/npc.model';
-import { HeroModel } from 'src/characters/hero/hero.model';
-import { HeroController } from 'src/characters/hero/hero.controller';
-import { HeroService } from 'src/characters/hero/hero.service';
 import { HeroPowersController } from 'src/skills/heroes.controller';
+import { HeroModule } from 'src/characters/hero/hero.module';
 
 @Module({
-  imports: [
+  imports: [HeroModule,
     ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'mysql',
@@ -25,17 +23,15 @@ import { HeroPowersController } from 'src/skills/heroes.controller';
       autoLoadModels: true,
       synchronize: true,
     }),
-    SequelizeModule.forFeature([HeroModel, SkillsModel, NpcModel]),
+    SequelizeModule.forFeature([SkillsModel, NpcModel]),
   ],
   controllers: [
     NpcController,
-    HeroController,
     SkillsController,
     HeroPowersController],
 
   providers: [
     NpcService,
-    HeroService,
     SkillsService]
 })
 export class AppModule { }
