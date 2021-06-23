@@ -6,4 +6,7 @@ export class NpcDto {
     occupation: string;
     location: string;
     description: string;
+    maxHp: number;
+    maxEnergy: number;
+    carryingCapacity: number;
 }

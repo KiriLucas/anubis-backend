@@ -1,50 +1,47 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
 
-@Table({tableName: 'npcs'})
+@Table({tableName: 'npcs', underscored: true})
 export class NpcModel extends Model<NpcModel> {
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'name' })
+    @Column({ type: DataType.STRING, allowNull: false })
     name: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'race' })
+    @Column({ type: DataType.STRING, allowNull: false })
     race: string;
 
-    @Column({ type: DataType.INTEGER, allowNull: true, field: 'age' })
+    @Column({ type: DataType.INTEGER, allowNull: true })
     age: number;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'gender' })
+    @Column({ type: DataType.STRING, allowNull: false })
     gender: string;
 
-    @Column({ type: DataType.STRING, allowNull: true, field: 'occupation'})
+    @Column({ type: DataType.STRING, allowNull: true })
     occupation: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'location' })
+    @Column({ type: DataType.STRING, allowNull: false })
     location: string;
 
-    @Column({ type: DataType.TEXT, allowNull: false, field: 'description' })
+    @Column({ type: DataType.TEXT, allowNull: false })
     description: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'created_by' })
+    @Column({ type: DataType.INTEGER, allowNull: false })
+    maxHp: number;
+
+    @Column({ type: DataType.INTEGER, allowNull: false })
+    maxEnergy: number;
+
+    @Column({ type: DataType.INTEGER, allowNull: false })
+    carryingCapacity: number;
+
+    @Column({ type: DataType.STRING, allowNull: false })
     createdBy?: string;
 
-    @Column({ type: DataType.DATE, allowNull: false, field: 'created_at' })
+    @Column({ type: DataType.DATE, allowNull: false })
     createdAt?: Date;
 
-    @Column({ type: DataType.STRING, allowNull: true, field: 'updated_by' })
+    @Column({ type: DataType.STRING, allowNull: true })
     updatedBy?: string;
 
-    @Column({ type: DataType.DATE, allowNull: true, field: 'updated_at'  })
+    @Column({ type: DataType.DATE, allowNull: true })
     updatedAt?: Date;
-
-    // constructor(model: NpcModel){
-    //     super();
-    //     this.name = model.name;
-    //     this.race = model.race;
-    //     this.age = model.age;
-    //     this.gender = model.gender;
-    //     this.occupation = model.occupation;
-    //     this.location = model.location;
-    //     this.description = model.description;
-    //     this.createdBy = "BATATA"
-    // }
 }

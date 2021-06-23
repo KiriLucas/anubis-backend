@@ -5,6 +5,9 @@ export class HeroDto {
     gender: string;
     job: string;
     origin: string;   
+    maxHp: number;
+    maxEnergy: number;
+    carryingCapacity: number;
 
 //     constructor(name: string, race: string, age: string, gender: string, job: string, origin: string,
 //         ) {

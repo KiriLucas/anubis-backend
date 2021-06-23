@@ -1,29 +1,32 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
 
-@Table({tableName: 'skills'})
+@Table({tableName: 'skills', underscored: true})
 export class SkillModel extends Model<SkillModel> {
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'name' })
+    @Column({ type: DataType.STRING, allowNull: false })
     name: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'type' })
+    @Column({ type: DataType.STRING, allowNull: false })
     type: string;
 
-    @Column({ type: DataType.STRING, allowNull: true, field: 'nature' })
+    @Column({ type: DataType.STRING, allowNull: true })
     nature: string;
 
-    @Column({ type: DataType.TEXT, allowNull: false, field: 'description' })
+    @Column({ type: DataType.TEXT, allowNull: false })
     description: string;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: 'created_by' })
+    @Column({ type: DataType.INTEGER, allowNull: false })
+    energyCost: number;
+
+    @Column({ type: DataType.STRING, allowNull: false })
     createdBy?: string;
 
-    @Column({ type: DataType.DATE, allowNull: false, field: 'created_at' })
+    @Column({ type: DataType.DATE, allowNull: false })
     createdAt?: Date;
 
-    @Column({ type: DataType.STRING, allowNull: true, field: 'updated_by' })
+    @Column({ type: DataType.STRING, allowNull: true })
     updatedBy?: string;
 
-    @Column({ type: DataType.DATE, allowNull: true, field: 'updated_at'  })
+    @Column({ type: DataType.DATE, allowNull: true })
     updatedAt?: Date;
 }

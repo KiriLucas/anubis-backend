@@ -5,7 +5,7 @@ import { HeroService } from "./hero.service";
 
 @Controller('heroes')
 export class HeroController {
-    constructor(private readonly heroService: HeroService) { }
+    constructor(private readonly heroService: HeroService) {}
 
     @Get()
     async getHeroList(): Promise<HeroDto[]> {
@@ -14,7 +14,7 @@ export class HeroController {
 
     @Post()
     createHero(@Body() body: HeroDto) {
-        return this.heroService.newHero(body)
+        return this.heroService.createHero(body)
     }
 }
 
