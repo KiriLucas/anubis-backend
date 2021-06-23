@@ -35,4 +35,16 @@ export class NpcModel extends Model<NpcModel> {
 
     @Column({ type: DataType.DATE, allowNull: true, field: 'updated_at'  })
     updatedAt?: Date;
+
+    // constructor(model: NpcModel){
+    //     super();
+    //     this.name = model.name;
+    //     this.race = model.race;
+    //     this.age = model.age;
+    //     this.gender = model.gender;
+    //     this.occupation = model.occupation;
+    //     this.location = model.location;
+    //     this.description = model.description;
+    //     this.createdBy = "BATATA"
+    // }
 }

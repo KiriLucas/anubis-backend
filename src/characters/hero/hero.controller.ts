@@ -5,29 +5,16 @@ import { HeroService } from "./hero.service";
 
 @Controller('heroes')
 export class HeroController {
-    constructor(private readonly heroService: HeroService){}
+    constructor(private readonly heroService: HeroService) { }
 
     @Get()
-    async getHeroesList(): Promise<HeroDto[]> {
-        return this.heroService.getHeroesList();
+    async getHeroList(): Promise<HeroDto[]> {
+        return this.heroService.getHeroList();
     }
-
-    // @Get('/:heroId')
-    // getHeroById(
-    //     @Param('heroId') heroId: number): HeroesDto {
-    //     return this.heroes[heroId]
-    // }
 
     @Post()
-    createHero(@Body() body: HeroDto){
+    createHero(@Body() body: HeroDto) {
         return this.heroService.newHero(body)
     }
-
-    // @Put(':/heroId')
-    // updateHero(
-    //     @Param('heroID') heroId: string,
-    //     @Body() body){
-    //     return "Update Hero"
-    // }
 }
 

@@ -10,7 +10,7 @@ export class HeroService {
     private heroModel: typeof HeroModel) { // Difference between that and: private heroesModel: HeroesModel
     }
 
-    async getHeroesList(): Promise<HeroDto[]>{
+    async getHeroList(): Promise<HeroDto[]>{
         return this.heroModel.findAll();
     }
 
