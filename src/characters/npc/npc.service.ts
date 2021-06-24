@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { NpcDto } from '../dto/npc.dto';
+import { NpcDto } from './dtos/npc.dto';
 import { NpcModel } from './npc.model';
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Put, Param, Body } from "@nestjs/common";
-import { NpcDto } from "../dto/npc.dto";
+import { NpcDto } from "./dtos/npc.dto";
 import { NpcService } from "./npc.service";
 
 
