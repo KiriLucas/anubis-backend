@@ -23,17 +23,7 @@ export class UserModel extends Model<UserModel> {
     password: string;
 
     @BeforeCreate
-    static async makeUpperCase(instance: UserModel) {
-        // this will be called when an instance is created or updated
+    static async hashPassword(instance: UserModel) {
         instance.password = await hash(instance.password, 10)
-      }
-
-    // @BeforeCreate
-    // static beforeCreateHook(instance: UserModel, options: any){
-    //     instance.password = hash(instance.password, 10) 
-    // }
-    // @BeforeCreate
-    // async hashPassword(){
-    //     this.password = await hash(this.password, 10)
-    // }
+    }
 }
