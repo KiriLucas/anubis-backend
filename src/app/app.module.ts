@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { HeroModule } from 'src/characters/hero/hero.module';
 import { SkillModule } from 'src/skills/skill.module';
 import { NpcModule } from 'src/characters/npc/npc.module';
+import { UserModule } from 'src/system/user/user.module';
 
 @Module({
-  imports: [HeroModule, SkillModule, NpcModule],
+  imports: [HeroModule, SkillModule, NpcModule, UserModule],
   controllers: [],
   providers: []
 })

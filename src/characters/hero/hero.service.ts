@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { HeroDto } from '../dto/hero.dto';
+import { HeroDto } from './dtos/hero.dto';
 import { HeroModel } from './hero.model';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class HeroService {
     }
 
     async getHeroList(): Promise<HeroDto[]>{
-        return this.heroModel.findAll();
+        return await this.heroModel.findAll();
     }
 
     // getHeroById(id: number): HeroesDto{
