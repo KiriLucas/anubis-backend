@@ -43,6 +43,7 @@
 ### <span style="color: gold">Technical stuff and development improvements</span>
 
 - [X] Create to do list
+- [ ] Migrate from sequelize to TypeORM
 - [ ] Migrate to microservices
 - [ ] Create frontend
   - [ ] Create PWA
