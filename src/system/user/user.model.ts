@@ -1,8 +1,8 @@
 import { Table, Model, Column, DataType, BeforeCreate, BeforeSave, BeforeBulkCreate } from "sequelize-typescript";
-import {hash} from 'bcrypt';
+import { hash } from 'bcrypt';
 
 @Table({ tableName: 'users', underscored: true})
-export class UserModel extends Model<UserModel> {
+export class UserModel extends Model {
 
     @Column({ type: DataType.STRING, allowNull: false })
     username: string;
