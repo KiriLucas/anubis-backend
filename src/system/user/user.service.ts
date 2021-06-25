@@ -29,12 +29,21 @@ export class UserService {
         }, JWT_SECRET)
     }
 
-    buildUserResponse(user: UserModel): UserResponseInterface {
-        return{
-            user: {
-                ...user,
-                token: this.generateJwt(user)
-             }
-        }
+    buildUserResponse(user: UserModel): any {
+        const dto = new UserResponseDto();
+        dto.username = user.username
+        dto.email = user.email
+        dto.token = this.generateJwt(user)
+
+        return dto;
     }
+
+    // buildUserResponse(user: UserModel): UserResponseInterface {
+    //     return{
+    //         user: {
+    //             ...user,
+    //             token: this.generateJwt(user)
+    //          }
+    //     }
+    // }
 }
