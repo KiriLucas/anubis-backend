@@ -3,6 +3,9 @@ import { Table, Model, Column, DataType } from "sequelize-typescript";
 @Table({tableName: 'heroes', underscored: true})
 export class HeroModel extends Model<HeroModel> {
 
+    @Column({ type: DataType.STRING, allowNull: false})
+    userId: string;
+
     @Column({ type: DataType.STRING, allowNull: false })
     name: string;
 

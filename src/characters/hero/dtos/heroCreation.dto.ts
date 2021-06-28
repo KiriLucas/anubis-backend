@@ -1,11 +1,11 @@
-export class NpcDto {
+export class HeroCreationDto {
+    userId: string;
     name: string;
     race: string;
     age: number;
     gender: string;
-    occupation: string;
-    location: string;
-    description: string;
+    job: string;
+    origin: string;   
     maxHp: number;
     maxEnergy: number;
     carryingCapacity: number;
