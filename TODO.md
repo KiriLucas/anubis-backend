@@ -43,6 +43,7 @@
 ### <span style="color: gold">Technical stuff and development improvements</span>
 
 - [X] Create to do list
+- [ ] Replace all single quotes with double quotes
 - [ ] Migrate from sequelize to TypeORM
 - [ ] Migrate to microservices
 - [ ] Create frontend

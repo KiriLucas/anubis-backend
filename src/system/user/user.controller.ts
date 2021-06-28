@@ -3,8 +3,6 @@ import { UserCreationDto } from "./dtos/userCreation.dto";
 import { UserLoginDto } from "./dtos/userLogin.dto";
 import { UserResponseDto } from "./dtos/userResponse.dto";
 import { UserService } from "./user.service";
-// import { UserResponseInterface } from "./interfaces/userResponse.interface";
-// import { UserModel } from "./user.model";
 
 @Controller('users')
 export class UserController {
@@ -20,6 +18,7 @@ export class UserController {
     @UsePipes(new ValidationPipe())
     async userLogin(@Body() loginDto: UserLoginDto): Promise<UserResponseDto> {
         const user = await this.userService.login(loginDto)
-        return "teste" as any
+
+        return await this.userService.getUserResponse(user)
     }
 }
