@@ -6,6 +6,8 @@ import { sign } from 'jsonwebtoken';
 import { JWT_SECRET } from "config";
 import { UserResponseInterface } from "./interfaces/userResponse.interface";
 import { UserResponseDto } from "./dtos/userResponse.dto";
+import { UserLoginDto } from "./dtos/userLogin.dto";
+import { plainToClass } from "class-transformer";
 
 @Injectable()
 export class UserService {
@@ -49,16 +51,16 @@ export class UserService {
 
     // TODO: Refactor the return type (it should not be 'any', should be a DTO) and maybe use the responseInterface
     getUserResponse(user: UserModel): UserResponseDto {
-        const dto = new UserResponseDto();
-        dto.username = user.username
-        dto.email = user.email
-        dto.token = this.generateJwt(user)
-
+        const dto = plainToClass(UserResponseDto, user);
         return dto;
     }
 
-    // TODO: Find why this piece of shit is not working
-    // buildUserResponse(user: UserModel): UserResponseInterface {
+    async login(loginDto: UserLoginDto){
+        
+    }
+
+    // // TODO: Find why this piece of shit is not working
+    // buildUserResponse2(user: UserModel): UserResponseInterface {
     //     return{
     //         user: {
     //             ...user,

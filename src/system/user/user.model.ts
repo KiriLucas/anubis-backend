@@ -18,7 +18,7 @@ export class UserModel extends Model {
 
     @Column({ type: DataType.STRING, allowNull: true })
     image: string;
-
+    
     @Column({ type: DataType.STRING, allowNull: false })
     password: string;
 

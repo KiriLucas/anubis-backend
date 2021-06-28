@@ -16,9 +16,10 @@ export class UserController {
         return this.userService.getUserResponse(await this.userService.createUser(userCreationDto));
     }
 
-    @Get('login')
+    @Post('/login')
     @UsePipes(new ValidationPipe())
-    async userLogin(@Body() loginData: UserLoginDto) {
-
+    async userLogin(@Body() loginDto: UserLoginDto): Promise<UserResponseDto> {
+        const user = await this.userService.login(loginDto)
+        return "teste" as any
     }
 }
