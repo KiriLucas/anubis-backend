@@ -15,17 +15,17 @@ export class UserService {
     }
 
     // TODO: Review this whole method... Maybe create a validation class or an utils module? Improve code quality and reduce complexity if possible
-    async createUser(createUserDto: UserCreationDto): Promise<UserModel> {
+    async createUser(userCreationDto: UserCreationDto): Promise<UserModel> {
 
         // TODO: Create array of errors/error messages, just so every error will be displayed at once
-        if (await this.isEmailUsed(createUserDto.email)) {
-            throw new HttpException(`${createUserDto.email} is already being used`, HttpStatus.UNPROCESSABLE_ENTITY)
-        } else if(await this.isUsernameUsed(createUserDto.username)){
-            throw new HttpException(`${createUserDto.username} is already being used`, HttpStatus.UNPROCESSABLE_ENTITY)
+        if (await this.isEmailUsed(userCreationDto.email)) {
+            throw new HttpException(`${userCreationDto.email} is already being used`, HttpStatus.UNPROCESSABLE_ENTITY)
+        } else if(await this.isUsernameUsed(userCreationDto.username)){
+            throw new HttpException(`${userCreationDto.username} is already being used`, HttpStatus.UNPROCESSABLE_ENTITY)
         }
 
         const newUser = new UserModel();
-        Object.assign(newUser, createUserDto);
+        Object.assign(newUser, userCreationDto);
 
         return newUser.save();
     }
