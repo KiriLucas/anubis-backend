@@ -35,6 +35,10 @@ export class UserService {
         return this.userModel.findOne({ where: { username: username } })
     }
 
+    async getUserById(id: number): Promise<UserModel> {
+        return this.userModel.findOne({ where: { id: id } })
+    }
+
     getUserResponse(userModel: UserModel): UserResponseDto {
         const userDto = plainToClass(UserResponseDto, userModel);
         userDto.token = sign({ id: userModel.id, user: userModel.username, email: userModel.email }, process.env.JWT_SECRET)
