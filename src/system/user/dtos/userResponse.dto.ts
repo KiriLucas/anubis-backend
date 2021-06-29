@@ -19,11 +19,4 @@ export class UserResponseDto {
 
         @Expose()
         token: string;
-
-        @Expose()
-        password: string;
-
-        // constructor(user){
-                
-        // }
 }

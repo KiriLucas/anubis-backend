@@ -1,6 +1,5 @@
-import { UserType } from "../types/user.type";
-import { UserModel } from "../user.model";
+import { UserResponseDto } from "../dtos/userResponse.dto";
 
 export interface UserResponseInterface {
-    user: UserModel & { token: string }        
+    user: UserResponseDto & { token: string }        
 }
