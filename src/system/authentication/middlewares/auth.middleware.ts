@@ -7,27 +7,21 @@ import { UserService } from "../../user/user.service";
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
 
-    constructor(private readonly userService: UserService) {
+    constructor(private readonly userService: UserService) {}
 
-    }
-
-    async use(req: ExpressRequest, _: Response, next: NextFunction) {
-
-        if (!req.headers.authorization) {
-            req.user = null
+    async use(request: ExpressRequest, _: Response, next: NextFunction) {
+        const authHeader = request.headers.authorization;
+        request.user = null
+        if (!authHeader) {
             next()
             return
         }
 
-        const token = req.headers.authorization.split(' ')[1]
-
         try {
-            const user = await this.userService.getUserById(verify(token, process.env.JWT_SECRET).id)
-            req.user = user;
+            request.user = await this.userService.getUserById(verify(authHeader.split(' ')[1], process.env.JWT_SECRET).id);
             next()
-
-        } catch (error) {
-            req.user = null
+        } catch (error) { // TODO: Create error logging
+            console.log('Auth Middlware Error: ', error)
             next()
         }
     }
