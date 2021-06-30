@@ -3,10 +3,15 @@
 
 
 ### <span style="color: gold">Game mechanics and features</span>
-- [ ] Create APIs (CRUD)
-  - [X] Character
+- [ ] Stage 1: Basic structure (creation, listing, mapping)
+  - [X] Heroes
+  - [X] Races
+  - [ ] Classes
+  - [ ] Attributes
   - [X] NPCs
-  - [X] Skills  
+  - [X] Skills
+  - [X] Users
+  - [X] Authentication
   - [ ] Items in general
     - [ ] Coins 
     - [ ] Equipments
@@ -17,16 +22,18 @@
   - [ ] Locations
 
 <hr/>
-
-- [ ] Create APIs (relation with characters)
-  - [ ] Inventory
-  - [ ] Atributes 
-  - [ ] Skills
-  - [ ] Relationships
+- [ ] Stage 2: Deeper development 1 (make things work as they should)
+  - [ ] Heroes
+  - [ ] NPCs
+  - [ ] Items
 
 <hr/>
 
-- [ ] Create APIs (character interaction)
+- [ ] Stage 3: Advanced structure (relation with characters)
+  - [ ] Inventory system
+  - [ ] Item enchantment 
+  - [ ] Skills damage
+  - [ ] Relationships
   - [ ] Damage
   - [ ] Combat 
   - [ ] Shopping
@@ -34,20 +41,13 @@
 
 <hr/>
 
-- [X] Create character creation/update/listing API
-- [X] Create NPC creation/update/listing API
-- [X] Create skill creation/update/listing API
-
-<hr/>
-
 ### <span style="color: gold">Technical stuff and development improvements</span>
 
-- [X] Create to do list
 - [ ] Replace all single quotes with double quotes
-- [ ] Migrate from sequelize to TypeORM
-- [ ] Migrate to microservices
+- [ ] Migrate from sequelize to TypeORM (maybe not)
+- [ ] Migrate to microservices (later on)
 - [ ] Create frontend
-  - [ ] Create PWA
+- [ ] Create PWA
 - [x] Connect application to database (sequelize)
 - [X] Create safety rules to repository
 - [ ] Refactor code in order to follow best practices and patterns

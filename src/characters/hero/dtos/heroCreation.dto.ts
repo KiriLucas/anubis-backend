@@ -1,12 +1,17 @@
 export class HeroCreationDto {
-    userId: string;
+    userId: number;
     name: string;
-    race: string;
-    age: number;
     gender: string;
-    job: string;
-    origin: string;   
+    age: number;
+    raceId: number;
+    classId: number;
+    originId: number;
+    energyType: number;
     maxHp: number;
     maxEnergy: number;
     carryingCapacity: number;
+    createdBy: number;
+    createdAt: Date;
+    updatedBy?: number;
+    updatedAt?: Date;
 }

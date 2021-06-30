@@ -3,8 +3,6 @@ import { UserCreationDto } from "./dtos/userCreation.dto";
 import { UserLoginDto } from "./dtos/userLogin.dto";
 import { UserResponseDto } from "./dtos/userResponse.dto";
 import { UserService } from "./user.service";
-import { Request } from 'express'
-import { ExpressRequest } from "src/types/expressRequest.interface";
 import { User } from "./decorators/user.decorator";
 import { UserModel } from "./user.model";
 import { AuthGuard } from "../authentication/guards/auth.guard";

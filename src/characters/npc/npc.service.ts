@@ -10,30 +10,30 @@ export class NpcService {
     private npcModel: typeof NpcModel) {
     }
 
-    async getNpcList(): Promise<NpcDto[]>{
-        return this.npcModel.findAll();
-    }
+    // async getNpcList(): Promise<NpcDto[]>{
+    //     return this.npcModel.findAll();
+    // }
 
-    async getNpcById(id): Promise<NpcModel> {
-        return this.npcModel.findOne(id);
-    }
+    // async getNpcById(id): Promise<NpcModel> {
+    //     return this.npcModel.findOne(id);
+    // }
 
-    /**
-     * TODO: Create constructor for this
-     **/ 
-    createNpc(body: NpcDto){
-        const model = new this.npcModel();
-        Object.assign(model, body)
-        model.createdAt = new Date();
-        model.createdBy = "User";
+    // /**
+    //  * TODO: Create constructor for this
+    //  **/ 
+    // createNpc(body: NpcDto){
+    //     const model = new this.npcModel();
+    //     Object.assign(model, body)
+    //     model.createdAt = new Date();
+    //     model.createdBy = "User";
 
-        return model.save()
-    }
+    //     return model.save()
+    // }
     
-    async updateNpc(id: number, body: NpcDto){ //
-        const model =  await this.getNpcById(id);
-        Object.assign(model, body)
+    // async updateNpc(id: number, body: NpcDto){ //
+    //     const model =  await this.getNpcById(id);
+    //     Object.assign(model, body)
 
-        return await model.save();
-    }
+    //     return await model.save();
+    // }
 }

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { HeroController } from './hero.controller';
@@ -7,7 +7,8 @@ import { HeroService } from './hero.service';
 
 
 @Module({
-    imports: [    
+    imports: [
+      HttpModule,    
         ConfigModule.forRoot(),
         SequelizeModule.forRoot({
           dialect: 'mysql',
