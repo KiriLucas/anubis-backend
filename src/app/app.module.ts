@@ -5,9 +5,10 @@ import { NpcModule } from 'src/characters/npc/npc.module';
 import { UserModule } from 'src/system/user/user.module';
 import { AuthMiddleware } from 'src/system/authentication/middlewares/auth.middleware';
 import { RaceModule } from 'src/races/race.module';
+import { ClassModule } from 'src/classes/rclass.module';
 
 @Module({
-  imports: [HeroModule, SkillModule, NpcModule, UserModule, RaceModule],
+  imports: [HeroModule, SkillModule, NpcModule, UserModule, RaceModule, ClassModule],
   controllers: [],
   providers: []
 })

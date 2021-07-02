@@ -6,7 +6,7 @@
 - [ ] Stage 1: Basic structure (creation, listing, mapping)
   - [X] Heroes
   - [X] Races
-  - [ ] Classes
+  - [X] Classes
   - [ ] Attributes
   - [X] NPCs
   - [X] Skills

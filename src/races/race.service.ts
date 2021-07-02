@@ -19,7 +19,7 @@ export class RaceService {
         return this.raceModel.findOne({ where: { id: id } })
     }
 
-    async getRaceList(): Promise<RaceCreationDto[]> {
+    async getRaceList(): Promise<RaceListingDto[]> {
         return this.raceModel.findAll()
     }
 }

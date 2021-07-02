@@ -1,9 +1,7 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { plainToClass, plainToClassFromExist } from 'class-transformer';
-import { raw } from 'express';
+import { plainToClass } from 'class-transformer';
 import { UserResponseDto } from 'src/system/user/dtos/userResponse.dto';
-import { UserModel } from 'src/system/user/user.model';
 import { DetailedHeroListingDto } from './dtos/detailedHeroListing.dto';
 import { HeroCreationDto } from './dtos/heroCreation.dto';
 import { HeroDto } from './dtos/hero.dto';
@@ -12,7 +10,8 @@ import { HeroModel } from './hero.model';
 @Injectable()
 export class HeroService {
 
-    RACE_URL = 'races/'
+    GET_RACE = 'races/'
+    GET_CLASS = 'classes/'
 
     messages: string[] = ['test1', 'test2', 'test3']
 
@@ -23,22 +22,28 @@ export class HeroService {
         return hero
     }
 
-    async getLocalUrl(url: string, path: string) {
-    }
+    async getRequestObject(url: string, path: number, user: UserResponseDto) {
+        const requestUrl = {
+            url:
+                process.env.URL + url + path,
+            header: { headers: { 'Authorization': `Token ${user.token}` } }
+        }
 
-    async getHeaders(user: UserResponseDto) {
-        return { 'Authorization': `Token ${user.token}` }
+        return requestUrl
     }
 
     // TODO: Refactor method name, as well as dto naming
     async getHeroData(hero: HeroDto, user: UserResponseDto): Promise<DetailedHeroListingDto> {
         const heroList = new DetailedHeroListingDto()
+        const raceRequest = await this.getRequestObject(this.GET_RACE, hero.raceId, user)
+        const classRequest = await this.getRequestObject(this.GET_CLASS, hero.classId, user)
 
         //! Create request method
-        const race = await (await this.httpService.get(process.env.URL + this.RACE_URL + hero.raceId, { headers: await this.getHeaders(user) }).toPromise()).data
-        const characterClass = { name: "Placeholder" }
-        const origin = { name: "Placeholder" }
-        const energyType = { name: "Placeholder" }
+        const race = await (await this.httpService.get(raceRequest.url, raceRequest.header).toPromise()).data
+        const characterClass = await (await this.httpService.get(classRequest.url, classRequest.header).toPromise()).data
+        // const origin = { name: "Placeholder" }
+        // const energyType = { name: "Placeholder" }
+        const attributes = {}
 
         heroList.userId = hero.userId
         heroList.name = hero.name
@@ -46,8 +51,8 @@ export class HeroService {
         heroList.age = hero.age
         heroList.race = race.name
         heroList.characterClass = characterClass.name
-        heroList.origin = origin.name
-        heroList.energyType = energyType.name
+        // heroList.origin = origin.name
+        // heroList.energyType = energyType.name
         heroList.maxHp = hero.maxHp
         heroList.maxEnergy = hero.maxEnergy
         heroList.carryingCapacity = hero.carryingCapacity
@@ -74,8 +79,6 @@ export class HeroService {
      * TODO: Create constructor for this
      **/
     async createHero(heroCreationDto: HeroCreationDto, user: UserResponseDto) {
-        const requestHeader = { 'Authorization': `Token ${user.token}` }
-
         // const currentUser = await (await this.httpService.get('http://localhost:3000/users/user', { headers: requestHeader }).toPromise()).data
 
         const model = plainToClass(this.heroModel, heroCreationDto)
@@ -87,8 +90,6 @@ export class HeroService {
         const origin = ""
         const energyType = ""
 
-
-        //! Search and validate: raceId, classId, originId, energyType
 
 
         // userId: number;
@@ -109,8 +110,9 @@ export class HeroService {
 
 
         // return user as any
-        model.save()
-        return `${heroCreationDto.name} was created by NOME`
+        const batata = model.save()
+
+        return `${(await batata).id} was created by NOME`
     }
 
 }

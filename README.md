@@ -30,13 +30,13 @@ As for now, only the backend will be done, but I do intend on creating a fronten
 ## <p align="left" style="color: crimson">Technologies used:</p>
 - NodeJS (NestJS)
 - TypeScript
-- Sequelize (to be replaced soon)
+- Sequelize
 - MySQL
 - bcrypt (to be replaced)
 <hr/>
 
 ## <p align="left" style="color: crimson">Development Stage</p>
-1. Main entities: ![Progress](https://progress-bar.dev/45/)
+1. Main entities: ![Progress](https://progress-bar.dev/65/)
    <br/>- Heroes
    <br/>- NPCs
    <br/>- Skills
