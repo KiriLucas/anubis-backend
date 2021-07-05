@@ -9,6 +9,8 @@ import { HeroModel } from './hero.model';
 import { NewAttributesDto } from 'src/attributes/dtos/newAttributes.dto';
 import { RequestUtils } from 'src/utils/requests.utils';
 import { Constants } from 'src/utils/constants';
+import { RaceDto } from './dtos/race.dto';
+import { ClassDto } from './dtos/characterClass.dto';
 
 @Injectable()
 export class HeroService {
@@ -58,7 +60,7 @@ export class HeroService {
             detailedList.push(teste)
         }
 
-        return detailedList as any
+        return detailedList
     }
 
     async createHero(heroCreationDto: HeroCreationDto, user: UserResponseDto) {
@@ -68,9 +70,8 @@ export class HeroService {
         const classRequest = await this.requestUtils.requestObjectGet(Constants.GET_CLASS, heroCreationDto.classId, user)
         const attributesRequest = await this.requestUtils.requestObjectPost(Constants.CREATE_ATTRIBUTES, user)
 
-        // TODO: Set type to consts
-        const race = await (await this.httpService.get(raceRequest.url, raceRequest.header).toPromise()).data
-        const characterClass = await (await this.httpService.get(classRequest.url, classRequest.header).toPromise()).data
+        const characterRace: RaceDto = await (await this.httpService.get(raceRequest.url, raceRequest.header).toPromise()).data
+        const characterClass: ClassDto = await (await this.httpService.get(classRequest.url, classRequest.header).toPromise()).data
 
         // TODO: If none of the above are invalid, then:
         const model = plainToClass(this.heroModel, heroCreationDto)
@@ -80,20 +81,9 @@ export class HeroService {
 
         try {
             const character = await model.save()
+            const characterAttributes = this.setAttributesForCreation(character.heroId, characterRace, characterClass);
 
-            const attributesDto = new NewAttributesDto();
-
-            attributesDto.characterId = character.heroId
-            attributesDto.strength = race.strength_bonus + characterClass.strength_bonus
-            attributesDto.dexterity = race.dexterity_bonus + characterClass.dexterity_bonus
-            attributesDto.agility = race.agility_bonus + characterClass.agility_bonus
-            attributesDto.intelligence = race.intelligence_bonus + characterClass.intelligence_bonus
-            attributesDto.vitality = race.vitality_bonus + characterClass.vitality_bonus
-            attributesDto.charisma = race.charisma_bonus + characterClass.charisma_bonus
-            attributesDto.wisdom = race.wisdom_bonus + characterClass.wisdom_bonus
-            attributesDto.will = race.will_bonus + characterClass.will_bonus
-
-            await (await this.httpService.post(attributesRequest.url, attributesDto, attributesRequest.header).toPromise()).data
+            await (await this.httpService.post(attributesRequest.url, characterAttributes, attributesRequest.header).toPromise()).data
 
             return `Hero was created by ${user.username} - Hero id: ${character.heroId}`
         } catch (error) {
@@ -118,6 +108,22 @@ export class HeroService {
 
         //! Search and validate: raceId, classId, originId, energyType
 
+    }
+
+    setAttributesForCreation(id: number, race: RaceDto, characterClass: ClassDto): NewAttributesDto {
+
+        const attributes: NewAttributesDto = {
+            characterId: id,
+            strength: race.strength_bonus + characterClass.strength_bonus,
+            dexterity:race.dexterity_bonus + characterClass.dexterity_bonus,
+            agility: race.agility_bonus + characterClass.agility_bonus,
+            intelligence: race.intelligence_bonus + characterClass.intelligence_bonus,
+            vitality: race.vitality_bonus + characterClass.vitality_bonus,
+            charisma: race.charisma_bonus + characterClass.charisma_bonus,
+            wisdom: race.wisdom_bonus + characterClass.wisdom_bonus,
+            will: race.will_bonus + characterClass.will_bonus,
+        }
+        return attributes
     }
 
 }
