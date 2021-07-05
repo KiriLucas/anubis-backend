@@ -38,6 +38,7 @@ export class HeroService {
         const heroList: DetailedHeroListingDto = {
             userId: hero.userId,
             name: hero.name,
+            level: hero.level,
             gender: hero.gender,
             age: hero.age,
             race: race.name,
@@ -77,24 +78,25 @@ export class HeroService {
         const model = plainToClass(this.heroModel, heroCreationDto)
         model.userId = user.id
         model.createdBy = user.id
-        model.energyType = 1 // This should be taken from "class energy type"
 
         try {
-            const character = await model.save()
+            const characterModel = await model.save()
+            const character = plainToClass(HeroDto, characterModel)
+            character.energyType = "1";
+
             const attributesRequest = await this.requestUtils.requestObjectPost(Constants.CREATE_ATTRIBUTES, user)
             const characterAttributes = this.setAttributesForCreation(character.heroId, characterRace, characterClass);
 
-            await (await this.httpService.post(attributesRequest.url, characterAttributes, attributesRequest.header).toPromise()).data
+            await (await this.httpService.post(attributesRequest.url, {characterAttributes, character}, attributesRequest.header).toPromise()).data
 
             return `Hero was created by ${user.username} - Hero id: ${character.heroId}`
         } catch (error) {
-            return `error`
+            return `error ${error}`
         }
     }
 
     setAttributesForCreation(id: number, race: RaceDto, characterClass: ClassDto): NewAttributesDto {
         const attributes: NewAttributesDto = {
-            characterId: id,
             strength: race.strength_bonus + characterClass.strength_bonus,
             dexterity: race.dexterity_bonus + characterClass.dexterity_bonus,
             agility: race.agility_bonus + characterClass.agility_bonus,

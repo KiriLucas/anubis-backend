@@ -1,6 +1,7 @@
 export class ClassCreationDto {
     name: string;
     description: string;
+    energyType: string;
     strength_bonus: number;
     dexterity_bonus: number;
     agility_bonus: number;

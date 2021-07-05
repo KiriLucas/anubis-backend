@@ -7,16 +7,19 @@ export class AttributesModel extends Model {
     characterId: number;
     
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0})
+    maxHp: number;
+
+    @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0})
     currentHp: number;
     
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0})
-    maxHp: number;
+    maxEnergy: number;
     
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0})
     currentEnergy: number;
-    
-    @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0})
-    maxEnergy: number;
+
+    @Column({type: DataType.STRING, allowNull: false})
+    energyType: string;
 
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0})
     carryingCapacity: number;

@@ -10,6 +10,9 @@ export class DetailedHeroListingDto {
     name: string;
 
     @Expose()
+    level: number;
+
+    @Expose()
     gender: string;
 
     @Expose()

@@ -2,12 +2,18 @@ import { Exclude, Expose } from "class-transformer";
 
 @Exclude()
 export class HeroDto {
+
+    @Expose()
+    heroId: number;
     
     @Expose()
     userId: number;
     
     @Expose()
     name: string;
+
+    @Expose()
+    level: number;
     
     @Expose()
     gender: string;
@@ -23,19 +29,7 @@ export class HeroDto {
     
     @Expose()
     originId: number;
-    
+
     @Expose()
-    energyType: number;
-    
-    @Expose()
-    createdBy: number;
-    
-    @Expose()
-    createdAt: Date;
-    
-    @Expose()
-    updatedBy?: number;
-    
-    @Expose()
-    updatedAt?: Date;
+    energyType: string;
 }

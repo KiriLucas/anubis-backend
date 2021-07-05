@@ -1,5 +1,4 @@
 export class NewAttributesDto {
-    characterId: number;
     strength: number;
     dexterity: number;
     agility: number;

@@ -11,6 +11,9 @@ export class ClassListingDto {
     
     @Expose()
     description: string;
+
+    @Expose()
+    energyType: string;
     
     @Expose()
     strength_bonus: number;

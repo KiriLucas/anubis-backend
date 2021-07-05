@@ -13,6 +13,9 @@ export class HeroModel extends Model<HeroModel> {
     @Column({ type: DataType.STRING, allowNull: false })
     name: string;
 
+    @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 1 })
+    level: number;
+
     @Column({ type: DataType.STRING, allowNull: false })
     gender: string;
 
@@ -27,9 +30,6 @@ export class HeroModel extends Model<HeroModel> {
 
     @Column({ type: DataType.INTEGER, allowNull: false })
     originId: number;
-
-    @Column({ type: DataType.INTEGER, allowNull: false })
-    energyType: number;
 
     @Column({ type: DataType.INTEGER, allowNull: false })
     createdBy: number;

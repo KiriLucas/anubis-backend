@@ -1,6 +1,14 @@
 export abstract class Constants {
-    static readonly GET_RACE = 'races/'
-    static readonly GET_CLASS = 'classes/'
-    static readonly CREATE_ATTRIBUTES = 'attributes/'
-    static readonly GET_ATTRIBUTES = 'attributes/'
+
+    // URL paths
+    static readonly GET_RACE:string = 'races/'
+    static readonly GET_CLASS:string = 'classes/'
+    static readonly CREATE_ATTRIBUTES:string = 'attributes/'
+    static readonly GET_ATTRIBUTES:string = 'attributes/'
+
+    // Character attributes
+    static readonly BASE_HP:number = 100
+    static readonly BASE_ENERGY:number = 100
+    static readonly BASE_WEIGHT:number = 100
+
 }
