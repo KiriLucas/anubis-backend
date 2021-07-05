@@ -1,13 +1,15 @@
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { RequestUtils } from 'src/utils/requests.utils';
 import { HeroController } from './hero.controller';
 import { HeroModel } from './hero.model';
 import { HeroService } from './hero.service';
 
 
 @Module({
-    imports: [    
+    imports: [
+      HttpModule,    
         ConfigModule.forRoot(),
         SequelizeModule.forRoot({
           dialect: 'mysql',
@@ -22,6 +24,6 @@ import { HeroService } from './hero.service';
         SequelizeModule.forFeature([HeroModel]),
     ],
     controllers: [HeroController],
-    providers: [HeroService],
+    providers: [HeroService, RequestUtils],
 })
 export class HeroModule { }

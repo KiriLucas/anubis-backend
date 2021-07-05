@@ -35,13 +35,18 @@ export class UserService {
         return this.userModel.findOne({ where: { username: username } })
     }
 
-    async getUserById(id: number): Promise<UserModel> {
-        return this.userModel.findOne({ where: { id: id } })
+    async getUserById(id: number): Promise<UserResponseDto> {
+        const model = await this.userModel.findOne({ where: { id: id } });
+        return this.getUserResponse(model)
     }
 
-    getUserResponse(userModel: UserModel): UserResponseDto {
-        const userDto = plainToClass(UserResponseDto, userModel);
-        userDto.token = sign({ id: userModel.id, user: userModel.username, email: userModel.email }, process.env.JWT_SECRET)
+    getToken(model: UserModel){
+        return sign({id: model.id, user: model.username, email: model.email}, process.env.JWT_SECRET)
+    }
+
+    getUserResponse(model: UserModel): UserResponseDto {
+        const userDto = plainToClass(UserResponseDto, model);
+        userDto.token = this.getToken(model)
 
         return userDto;
     }
@@ -63,15 +68,4 @@ export class UserService {
     async isUsernameUsed(username: string): Promise<boolean> {
         return await this.userModel.findOne({ where: { username: username } }) !== null;
     }
-
-
-    // // TODO: Find why this piece of shit is not working
-    // buildUserResponse2(user: UserModel): UserResponseInterface {
-    //     return{
-    //         user: {
-    //             ...user,
-    //             token: this.generateJwt(user)
-    //          }
-    //     }
-    // }
 }

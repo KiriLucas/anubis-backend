@@ -7,19 +7,19 @@ import { NpcService } from "./npc.service";
 export class NpcController {
     constructor(private readonly npcService: NpcService){}
 
-    @Get()
-    async getNpcList(): Promise<NpcDto[]> {
-        return this.npcService.getNpcList();
-    }
+    // @Get()
+    // async getNpcList(): Promise<NpcDto[]> {
+    //     return this.npcService.getNpcList();
+    // }
 
-    @Post()
-    createNpc(@Body() body: NpcDto){
-        return this.npcService.createNpc(body)
-    }
+    // @Post()
+    // createNpc(@Body() body: NpcDto){
+    //     return this.npcService.createNpc(body)
+    // }
 
-    @Put('/:skillId/')
-    async updateNpc(@Param('npcId') id, @Body() body: NpcDto) {
-        return this.npcService.updateNpc(id, body)
-    }
+    // @Put('/:skillId/')
+    // async updateNpc(@Param('npcId') id, @Body() body: NpcDto) {
+    //     return this.npcService.updateNpc(id, body)
+    // }
 }
 

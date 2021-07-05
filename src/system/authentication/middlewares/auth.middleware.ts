@@ -21,7 +21,7 @@ export class AuthMiddleware implements NestMiddleware {
             request.user = await this.userService.getUserById(verify(authHeader.split(' ')[1], process.env.JWT_SECRET).id);
             next()
         } catch (error) { // TODO: Create error logging
-            console.log('Auth Middlware Error: ', error)
+            console.error('Auth Middlware Error: ', error)
             next()
         }
     }
