@@ -29,9 +29,9 @@ export class AttributesService {
     async setAttributesOnCreation(attributesCreationDto: AttributesCreationDto): Promise<AttributesDto> {
         const characterAttributes = attributesCreationDto.characterAttributes
         const character = attributesCreationDto.character
-        
+        console.log(character.level)
         const attributes: AttributesDto = { ...characterAttributes,
-
+            
             // Dynamic attributes
 
             maxHp: Constants.BASE_HP + (characterAttributes.vitality * 10),
@@ -45,9 +45,9 @@ export class AttributesService {
 
             // Passive attributes
             physicalDamage: Math.floor((character.level / 4) + characterAttributes.strength + (characterAttributes.dexterity)),
-            physicalDefense: 1,
-            magicDamage: 1,
-            magicDefense: 1,
+            physicalDefense: Math.floor((characterAttributes.vitality / 2) + (characterAttributes.agility / 5) + (character.level / 2)),
+            magicDamage: Math.floor(Math.floor(character.level / 4) + characterAttributes.intelligence + Math.floor(characterAttributes.intelligence / 2) + Math.floor(characterAttributes.dexterity / 5)),
+            magicDefense: Math.floor((characterAttributes.intelligence + (characterAttributes.vitality / 5) + (characterAttributes.dexterity / 5) + (character.level / 4))),
             hitChance: 1,
             fleeChance: 1,
             critical: 1,

@@ -97,14 +97,14 @@ export class HeroService {
 
     setAttributesForCreation(id: number, race: RaceDto, characterClass: ClassDto): NewAttributesDto {
         const attributes: NewAttributesDto = {
-            strength: race.strength_bonus + characterClass.strength_bonus,
-            dexterity: race.dexterity_bonus + characterClass.dexterity_bonus,
-            agility: race.agility_bonus + characterClass.agility_bonus,
-            intelligence: race.intelligence_bonus + characterClass.intelligence_bonus,
-            vitality: race.vitality_bonus + characterClass.vitality_bonus,
-            charisma: race.charisma_bonus + characterClass.charisma_bonus,
-            wisdom: race.wisdom_bonus + characterClass.wisdom_bonus,
-            will: race.will_bonus + characterClass.will_bonus,
+            strength: race.strength_bonus + characterClass.strength_bonus + Constants.BASE_STRENGTH,
+            dexterity: race.dexterity_bonus + characterClass.dexterity_bonus + Constants.BASE_DEXTERITY,
+            agility: race.agility_bonus + characterClass.agility_bonus + Constants.BASE_AGILITY,
+            intelligence: race.intelligence_bonus + characterClass.intelligence_bonus + Constants.BASE_INTELLIGENCE,
+            vitality: race.vitality_bonus + characterClass.vitality_bonus + Constants.BASE_VITALITY,
+            charisma: race.charisma_bonus + characterClass.charisma_bonus + Constants.BASE_CHARISMA,
+            wisdom: race.wisdom_bonus + characterClass.wisdom_bonus + Constants.BASE_WISDOM,
+            will: race.will_bonus + characterClass.will_bonus + Constants.BASE_WILL,
         }
 
         return attributes
