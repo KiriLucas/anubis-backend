@@ -16,9 +16,9 @@ export class AttributesService {
         // return model.save()
     }
 
-    // async getClassById(id: number): Promise<ClassListingDto> {
-    //     return this.classModel.findOne({ where: { id: id } })
-    // }
+    async getAttributesByCharacterId(id: number): Promise<AttributesDto> {
+        return this.attributesModel.findOne({ where: { id: id } })
+    }
 
     // async getClassList(): Promise<ClassListingDto[]> {
     //     return this.classModel.findAll()

@@ -16,15 +16,10 @@ export class AttributesController {
         return await this.attributesService.createCharacterAttributes(newAttributesDto)
     }
 
-    // @Get()
-    // async getClassList(): Promise<any> {
-    //     return this.classService.getClassList()
-    // }
+    @Get('/:characterId')
+    async getClassById(@Param('characterId') id: number): Promise<AttributesDto> {
+        return this.attributesService.getAttributesByCharacterId(id)
 
-    // @Get('/:classId')
-    // async getClassById(@Param('classId') id: number): Promise<any> {
-    //     return this.classService.getClassById(id)
-
-    // }
+    }
 
 }
