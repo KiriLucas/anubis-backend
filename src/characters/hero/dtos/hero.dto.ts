@@ -28,15 +28,6 @@ export class HeroDto {
     energyType: number;
     
     @Expose()
-    maxHp: number;
-    
-    @Expose()
-    maxEnergy: number;
-    
-    @Expose()
-    carryingCapacity: number;
-    
-    @Expose()
     createdBy: number;
     
     @Expose()

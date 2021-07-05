@@ -6,12 +6,15 @@ import { DetailedHeroListingDto } from './dtos/detailedHeroListing.dto';
 import { HeroCreationDto } from './dtos/heroCreation.dto';
 import { HeroDto } from './dtos/hero.dto';
 import { HeroModel } from './hero.model';
+import { NewAttributesDto } from 'src/attributes/dtos/newAttributes.dto';
 
 @Injectable()
 export class HeroService {
 
     GET_RACE = 'races/'
     GET_CLASS = 'classes/'
+    CREATE_ATTRIBUTES = 'attributes/'
+
 
     messages: string[] = ['test1', 'test2', 'test3']
 
@@ -22,10 +25,20 @@ export class HeroService {
         return hero
     }
 
-    async getRequestObject(url: string, path: number, user: UserResponseDto) {
+    async getRequestObject(service: string, path: number, user: UserResponseDto) {
         const requestUrl = {
             url:
-                process.env.URL + url + path,
+                process.env.URL + service + path,
+            header: { headers: { 'Authorization': `Token ${user.token}` } }
+        }
+
+        return requestUrl
+    }
+
+    async getRequestObjectPost(service: string, user: UserResponseDto) {
+        const requestUrl = {
+            url:
+                process.env.URL + service,
             header: { headers: { 'Authorization': `Token ${user.token}` } }
         }
 
@@ -37,13 +50,14 @@ export class HeroService {
         const heroList = new DetailedHeroListingDto()
         const raceRequest = await this.getRequestObject(this.GET_RACE, hero.raceId, user)
         const classRequest = await this.getRequestObject(this.GET_CLASS, hero.classId, user)
+        const attributesRequest = await this.getRequestObject(this.CREATE_ATTRIBUTES, hero.classId, user)
 
         //! Create request method
         const race = await (await this.httpService.get(raceRequest.url, raceRequest.header).toPromise()).data
         const characterClass = await (await this.httpService.get(classRequest.url, classRequest.header).toPromise()).data
-        // const origin = { name: "Placeholder" }
-        // const energyType = { name: "Placeholder" }
-        const attributes = {}
+        const attributes = await (await this.httpService.get(attributesRequest.url, attributesRequest.header).toPromise()).data
+        const origin = { name: "Placeholder" }
+        const energyType = { name: "Placeholder" }
 
         heroList.userId = hero.userId
         heroList.name = hero.name
@@ -51,11 +65,11 @@ export class HeroService {
         heroList.age = hero.age
         heroList.race = race.name
         heroList.characterClass = characterClass.name
-        // heroList.origin = origin.name
-        // heroList.energyType = energyType.name
-        heroList.maxHp = hero.maxHp
-        heroList.maxEnergy = hero.maxEnergy
-        heroList.carryingCapacity = hero.carryingCapacity
+        heroList.origin = origin.name
+        heroList.energyType = energyType.name
+        heroList.maxHp = attributes.maxHp
+        heroList.maxEnergy = attributes.maxEnergy
+        heroList.carryingCapacity = attributes.carryingCapacity
 
         return heroList
     }
@@ -81,38 +95,58 @@ export class HeroService {
     async createHero(heroCreationDto: HeroCreationDto, user: UserResponseDto) {
         // const currentUser = await (await this.httpService.get('http://localhost:3000/users/user', { headers: requestHeader }).toPromise()).data
 
+        //! Create validator class
+        const raceRequest = await this.getRequestObject(this.GET_RACE, heroCreationDto.raceId, user)
+        const classRequest = await this.getRequestObject(this.GET_CLASS, heroCreationDto.classId, user)
+        const attributesRequest = await this.getRequestObjectPost(this.CREATE_ATTRIBUTES, user)
+
+        console.log(attributesRequest)
+        
+        const race = await (await this.httpService.get(raceRequest.url, raceRequest.header).toPromise()).data
+        const characterClass = await (await this.httpService.get(classRequest.url, classRequest.header).toPromise()).data
+        // const attributes = await (await this.httpService.get(attributesRequest.url, attributesRequest.header).toPromise()).data
+
+        //! If none of the above are invalid, then:
         const model = plainToClass(this.heroModel, heroCreationDto)
+        model.userId = user.id
         model.createdBy = user.id
+        model.energyType = 1 // This should be taken from "class energy type"
+
+        const character = await model.save()
+
+        const attributesDto = new NewAttributesDto();
+        
+            attributesDto.characterId = character.heroId
+            attributesDto.strength = race.strength_bonus + characterClass.strength_bonus
+            attributesDto.dexterity  = race.dexterity_bonus + characterClass.dexterity_bonus
+            attributesDto.agility = race.agility_bonus + characterClass.agility_bonus
+            attributesDto.intelligence = race.intelligence_bonus + characterClass.intelligence_bonus
+            attributesDto.vitality = race.vitality_bonus + characterClass.vitality_bonus
+            attributesDto.charisma = race.charisma_bonus + characterClass.charisma_bonus
+            attributesDto.wisdom = race.wisdom_bonus + characterClass.wisdom_bonus
+            attributesDto.will = race.will_bonus + characterClass.will_bonus
+
+        await (await this.httpService.post(attributesRequest.url, attributesDto ,attributesRequest.header).toPromise()).data
+
 
         const username = ""
-        const race = ""
-        const characterClass = ""
         const origin = ""
         const energyType = ""
 
+        //! Chamar aqui criação de atributos, enviar: character_id, race_id e class_id, a criação de atributos vai procurar pelos respectivos ids
+        //! chamar outro método pra calcular os atributos a partir de raça, classe etc... Vai então devolver um heroAttributes que servirá para chamar
+        //! um terceiro método que irá criar no serviço de atributos uma linha na tabela STATS, que possuirá id do usuário, max_hp, max_weight, etc...
+        //! Essa tabela também possuirá HP e ENERGIA atuais, e no momento da criação, energia e HP serão idênticos se já não houver registro com id de personagem.
+
+        //? Criar função que cria os atributos do personagem (um registro de atributo por personagem)
+        //? Essa função chamará o serviço de atributos através de uma request, recebendo user, race, characterClass e attributeCreationDto e parecerá com o seguinte:
+        //? async setCharacterAttributes(user: UserResponseDto, race: RaceListingDto, character: characterClassListingDto)
+
+        //! Search and validate: raceId, classId, originId, energyType
 
 
-        // userId: number;
-        // name: string;
-        // gender: string;
-        // age: number;
-        // raceId: number;
-        // classId: number;
-        // originId: number;
-        // energyType: number;
-        // maxHp: number;
-        // maxEnergy: number;
-        // carryingCapacity: number;
-        // createdBy: number;
-        // createdAt: Date;
-        // updatedBy?: number;
-        // updatedAt?: Date;
 
-
-        // return user as any
-        const batata = model.save()
-
-        return `${(await batata).id} was created by NOME`
+        return `${(await character).id} was created by ${user.username}`
     }
 
 }

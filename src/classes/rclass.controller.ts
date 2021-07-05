@@ -2,6 +2,7 @@ import { Param } from "@nestjs/common";
 import { Body, Controller, Get, Post, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
 import { AuthGuard } from "src/system/authentication/guards/auth.guard";
 import { ClassCreationDto } from "./dtos/classCreation.dto";
+import { ClassListingDto } from "./dtos/classListing.dto";
 import { ClassService } from "./rclass.service";
 
 @Controller('classes')
@@ -16,7 +17,7 @@ export class ClassController {
     }
 
     @Get()
-    async getClassList(): Promise<any> {
+    async getClassList(): Promise<ClassListingDto[]> {
         return this.classService.getClassList()
     }
 

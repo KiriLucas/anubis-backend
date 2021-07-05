@@ -20,6 +20,7 @@ export class RaceService {
     }
 
     async getRaceList(): Promise<RaceListingDto[]> {
-        return this.raceModel.findAll()
+        const dto = plainToClass(RaceListingDto, await this.raceModel.findAll())
+        return dto
     }
 }

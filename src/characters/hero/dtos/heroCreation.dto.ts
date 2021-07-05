@@ -7,9 +7,6 @@ export class HeroCreationDto {
     classId: number;
     originId: number;
     energyType: number;
-    maxHp: number;
-    maxEnergy: number;
-    carryingCapacity: number;
     createdBy: number;
     createdAt: Date;
     updatedBy?: number;

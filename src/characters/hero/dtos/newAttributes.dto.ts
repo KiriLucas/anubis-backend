@@ -1,4 +1,4 @@
-export class AttributesDto {
+export class NewAttributesDto {
     characterId: number;
     currentHp: number;
     maxHp: number;
@@ -13,12 +13,4 @@ export class AttributesDto {
     charisma: number;
     wisdom: number;
     will: number;
-    physicalDamage: number;
-    physicalDefense: number;
-    magicDamage: number;
-    magicDefense: number;
-    hitChance: number;
-    fleeChance: number;
-    critical: number;
-    attackSpeed: number;
 }
