@@ -1,4 +1,5 @@
 export class AttributesDto {
+    characterId: number;
     maxHp: number;
     currentHp: number;
     maxEnergy: number;

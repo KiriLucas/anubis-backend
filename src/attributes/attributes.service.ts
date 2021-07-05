@@ -15,10 +15,11 @@ export class AttributesService {
     async createCharacterAttributes(attributesCreationDto: AttributesCreationDto): Promise<any> {
         const attributes = attributesCreationDto.characterAttributes
         const character = attributesCreationDto.character
-        attributes.attackSpeed = 0
-        await this.setAttributesOnCreation(attributesCreationDto)
-        // const model = plainToClass(AttributesModel, attributesDto)
-        // return model.save()
+
+        const dto: AttributesDto = await this.setAttributesOnCreation(attributesCreationDto)
+
+        const model = plainToClass(AttributesModel, dto)
+        return model.save()
     }
 
     async getAttributesByCharacterId(id: number): Promise<AttributesDto> {
@@ -29,11 +30,11 @@ export class AttributesService {
     async setAttributesOnCreation(attributesCreationDto: AttributesCreationDto): Promise<AttributesDto> {
         const characterAttributes = attributesCreationDto.characterAttributes
         const character = attributesCreationDto.character
-        console.log(character.level)
+
         const attributes: AttributesDto = { ...characterAttributes,
             
+            characterId: character.heroId,
             // Dynamic attributes
-
             maxHp: Constants.BASE_HP + (characterAttributes.vitality * 10),
             currentHp: Constants.BASE_HP + (characterAttributes.vitality * 10),
 
@@ -41,8 +42,7 @@ export class AttributesService {
             // maxEnergy: Constants.BASE_ENERGY,
             // currentEnergy: 1,
             energyType: character.energyType,
-            carryingCapacity: Constants.BASE_WEIGHT + (characterAttributes.strength * 30), // For each str point, add 10 to max_weight
-
+            carryingCapacity: Constants.BASE_WEIGHT + (characterAttributes.strength * 30), // For each str point, add 30 to max_weight
             // Passive attributes
             physicalDamage: Math.floor((character.level / 4) + characterAttributes.strength + (characterAttributes.dexterity)),
             physicalDefense: Math.floor((characterAttributes.vitality / 2) + (characterAttributes.agility / 5) + (character.level / 2)),
@@ -54,9 +54,6 @@ export class AttributesService {
             attackSpeed: 1,
         }
 
-        console.log('ATRIBUTOS: ', attributes)
-
-
-        return "" as any
+        return attributes
     }
 }
