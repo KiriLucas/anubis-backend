@@ -38,6 +38,7 @@ export class HeroService {
         const heroList: DetailedHeroListingDto = {
             userId: hero.userId,
             name: hero.name,
+            level: hero.level,
             gender: hero.gender,
             age: hero.age,
             race: race.name,
@@ -77,32 +78,33 @@ export class HeroService {
         const model = plainToClass(this.heroModel, heroCreationDto)
         model.userId = user.id
         model.createdBy = user.id
-        model.energyType = 1 // This should be taken from "class energy type"
 
         try {
-            const character = await model.save()
+            const characterModel = await model.save()
+            const character = plainToClass(HeroDto, characterModel)
+            character.energyType = "2";
+
             const attributesRequest = await this.requestUtils.requestObjectPost(Constants.CREATE_ATTRIBUTES, user)
             const characterAttributes = this.setAttributesForCreation(character.heroId, characterRace, characterClass);
 
-            await (await this.httpService.post(attributesRequest.url, characterAttributes, attributesRequest.header).toPromise()).data
+            await (await this.httpService.post(attributesRequest.url, {characterAttributes, character}, attributesRequest.header).toPromise()).data
 
             return `Hero was created by ${user.username} - Hero id: ${character.heroId}`
         } catch (error) {
-            return `error`
+            return `error ${error}`
         }
     }
 
     setAttributesForCreation(id: number, race: RaceDto, characterClass: ClassDto): NewAttributesDto {
         const attributes: NewAttributesDto = {
-            characterId: id,
-            strength: race.strength_bonus + characterClass.strength_bonus,
-            dexterity: race.dexterity_bonus + characterClass.dexterity_bonus,
-            agility: race.agility_bonus + characterClass.agility_bonus,
-            intelligence: race.intelligence_bonus + characterClass.intelligence_bonus,
-            vitality: race.vitality_bonus + characterClass.vitality_bonus,
-            charisma: race.charisma_bonus + characterClass.charisma_bonus,
-            wisdom: race.wisdom_bonus + characterClass.wisdom_bonus,
-            will: race.will_bonus + characterClass.will_bonus,
+            strength: race.strength_bonus + characterClass.strength_bonus + Constants.BASE_STRENGTH,
+            dexterity: race.dexterity_bonus + characterClass.dexterity_bonus + Constants.BASE_DEXTERITY,
+            agility: race.agility_bonus + characterClass.agility_bonus + Constants.BASE_AGILITY,
+            intelligence: race.intelligence_bonus + characterClass.intelligence_bonus + Constants.BASE_INTELLIGENCE,
+            vitality: race.vitality_bonus + characterClass.vitality_bonus + Constants.BASE_VITALITY,
+            charisma: race.charisma_bonus + characterClass.charisma_bonus + Constants.BASE_CHARISMA,
+            wisdom: race.wisdom_bonus + characterClass.wisdom_bonus + Constants.BASE_WISDOM,
+            will: race.will_bonus + characterClass.will_bonus + Constants.BASE_WILL,
         }
 
         return attributes

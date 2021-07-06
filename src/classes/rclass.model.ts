@@ -9,6 +9,9 @@ export class ClassModel extends Model {
     @Column({ type: DataType.TEXT, allowNull: true })
     description: string;
 
+    @Column({ type: DataType.STRING, allowNull: false })
+    energyType: string;
+
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     strength_bonus: number;
 
