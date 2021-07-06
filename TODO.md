@@ -22,6 +22,7 @@
   - [ ] Locations
 
 <hr/>
+
 - [ ] Stage 2: Deeper development 1 (make things work as they should)
   - [ ] Heroes
   - [ ] NPCs
