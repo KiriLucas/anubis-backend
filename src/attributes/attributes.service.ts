@@ -12,13 +12,11 @@ export class AttributesService {
 
     constructor(@InjectModel(AttributesModel) private attributesModel: typeof AttributesModel) { }
 
+    // TODO: Change return type
     async createCharacterAttributes(attributesCreationDto: AttributesCreationDto): Promise<any> {
-        const attributes = attributesCreationDto.characterAttributes
-        const character = attributesCreationDto.character
+        const attributes: AttributesDto = await this.setAttributesOnCreation(attributesCreationDto)
 
-        const dto: AttributesDto = await this.setAttributesOnCreation(attributesCreationDto)
-
-        const model = plainToClass(AttributesModel, dto)
+        const model = plainToClass(AttributesModel, attributes)
         return model.save()
     }
 
@@ -26,19 +24,29 @@ export class AttributesService {
         return this.attributesModel.findOne({ where: { id: id } })
     }
 
+    // TODO: Remove those ugly "ifs" and refactor this method into a decent looking one
+    async setEnergyAmount(attributesCreationDto: AttributesCreationDto): Promise<number> {
+        const energyType = attributesCreationDto.character.energyType
+
+        if (energyType === Constants.MAGIC) {
+            return
+        } else if (energyType === Constants.PHYSICAL) {
+            return
+        }
+    }
+
     // TODO: All formulas shoud, eventually, be on separate methods
     async setAttributesOnCreation(attributesCreationDto: AttributesCreationDto): Promise<AttributesDto> {
         const characterAttributes = attributesCreationDto.characterAttributes
         const character = attributesCreationDto.character
+        await this.setEnergyAmount(attributesCreationDto)
+        const attributes: AttributesDto = {
+            ...characterAttributes,
 
-        const attributes: AttributesDto = { ...characterAttributes,
-            
             characterId: character.heroId,
             // Dynamic attributes
             maxHp: Constants.BASE_HP + (characterAttributes.vitality * 10),
             currentHp: Constants.BASE_HP + (characterAttributes.vitality * 10),
-
-            //! This should be set on a different method accordingly to energy type, as it's formula should be different for each class
             // maxEnergy: Constants.BASE_ENERGY,
             // currentEnergy: 1,
             energyType: character.energyType,

@@ -7,7 +7,7 @@
   - [X] Heroes
   - [X] Races
   - [X] Classes
-  - [ ] Attributes
+  - [X] Attributes
   - [X] NPCs
   - [X] Skills
   - [X] Users
