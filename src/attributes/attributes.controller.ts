@@ -1,17 +1,13 @@
 import { Param } from "@nestjs/common";
-import { Body, Controller, Get, Post, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
-import { AuthGuard } from "src/system/authentication/guards/auth.guard";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { AttributesService } from "./attributes.service";
 import { AttributesCreationDto } from "./dtos/attributes.dto";
-import { NewAttributesDto } from "./dtos/newAttributes.dto";
 
 @Controller('attributes')
-@UseGuards(AuthGuard)
 export class AttributesController {
     constructor(private readonly attributesService: AttributesService) { }
 
     @Post()
-    @UsePipes(new ValidationPipe())
     async createCharacterAttributes(@Body() newAttributesDto: AttributesCreationDto): Promise<any> {
         return await this.attributesService.createCharacterAttributes(newAttributesDto)
     }

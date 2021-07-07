@@ -7,6 +7,7 @@ import { AuthMiddleware } from 'src/system/authentication/middlewares/auth.middl
 import { RaceModule } from 'src/races/race.module';
 import { ClassModule } from 'src/classes/rclass.module';
 import { AttributesModule } from 'src/attributes/attributes.module';
+import { InventoryModule } from 'src/items/inventory/inventory.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { AttributesModule } from 'src/attributes/attributes.module';
     UserModule,
     RaceModule,
     ClassModule,
-    AttributesModule
+    AttributesModule,
+    InventoryModule
   ],
   controllers: [],
   providers: []

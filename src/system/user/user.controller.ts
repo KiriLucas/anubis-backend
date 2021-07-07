@@ -8,18 +8,15 @@ import { UserModel } from "./user.model";
 import { AuthGuard } from "../authentication/guards/auth.guard";
 
 @Controller('users')
-@UseGuards(AuthGuard)
 export class UserController {
     constructor(private readonly userService: UserService) { }
 
     @Post()
-    @UsePipes(new ValidationPipe())
     async createUser(@Body('user') userCreationDto: UserCreationDto): Promise<UserResponseDto> {
         return this.userService.getUserResponse(await this.userService.createUser(userCreationDto));
     }
 
     @Post('/login')
-    @UsePipes(new ValidationPipe())
     async userLogin(@Body() loginDto: UserLoginDto): Promise<UserResponseDto> {
         const user = await this.userService.login(loginDto)
 
