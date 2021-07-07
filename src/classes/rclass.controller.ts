@@ -6,12 +6,10 @@ import { ClassListingDto } from "./dtos/classListing.dto";
 import { ClassService } from "./rclass.service";
 
 @Controller('classes')
-@UseGuards(AuthGuard)
 export class ClassController {
     constructor(private readonly classService: ClassService) { }
 
     @Post()
-    @UsePipes(new ValidationPipe())
     async createClass(@Body() classCreationDto: ClassCreationDto): Promise<any> {
         return await this.classService.createClass(classCreationDto)
     }

@@ -82,7 +82,7 @@ export class HeroService {
         try {
             const characterModel = await model.save()
             const character = plainToClass(HeroDto, characterModel)
-            character.energyType = "2";
+            character.energyType = "2"; // TODO: Set it to energytype from characterClass
 
             const attributesRequest = await this.requestUtils.requestObjectPost(Constants.CREATE_ATTRIBUTES, user)
             const characterAttributes = this.setAttributesForCreation(character.heroId, characterRace, characterClass);
