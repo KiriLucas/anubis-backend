@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
-import { AuthGuard } from "src/system/authentication/guards/auth.guard";
 import { RaceController } from "./race.controller";
 import { RaceModel } from "./race.model";
 import { RaceService } from "./race.service";
@@ -22,7 +21,7 @@ import { RaceService } from "./race.service";
         SequelizeModule.forFeature([RaceModel]),
     ],
     controllers: [RaceController],
-    providers: [RaceService, AuthGuard],
+    providers: [RaceService],
     exports: [RaceService]
 })
 export class RaceModule {}

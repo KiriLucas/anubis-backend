@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
-import { AuthGuard } from "src/system/authentication/guards/auth.guard";
 import { InventoryController } from "./inventory.controller";
 import { InventoryModel } from "./inventory.model";
 import { InventoryService } from "./inventory.service";
@@ -22,7 +21,7 @@ import { InventoryService } from "./inventory.service";
     SequelizeModule.forFeature([InventoryModel]),
   ],
   controllers: [InventoryController],
-  providers: [InventoryService, AuthGuard],
+  providers: [InventoryService],
   exports: [InventoryService]
 })
 export class InventoryModule { }

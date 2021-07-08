@@ -1,6 +1,5 @@
 import { Param } from "@nestjs/common";
-import { Body, Controller, Get, Post, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
-import { AuthGuard } from "src/system/authentication/guards/auth.guard";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { ClassCreationDto } from "./dtos/classCreation.dto";
 import { ClassListingDto } from "./dtos/classListing.dto";
 import { ClassService } from "./rclass.service";
