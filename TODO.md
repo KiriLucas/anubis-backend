@@ -24,14 +24,14 @@
 <hr/>
 
 - [ ] Stage 2: Deeper development 1 (make things work as they should)
-  - [ ] Heroes
-  - [ ] NPCs
+  - [ ] Characters (merge hero service and npc service into one)
+  - [ ] Enemies
   - [ ] Items
 
 <hr/>
 
 - [ ] Stage 3: Advanced structure (relation with characters)
-  - [ ] Inventory system
+  - [ ] Full inventory system
   - [ ] Item enchantment 
   - [ ] Skills damage
   - [ ] Relationships
@@ -45,7 +45,6 @@
 ### <span style="color: gold">Technical stuff and development improvements</span>
 
 - [ ] Replace all single quotes with double quotes
-- [ ] Migrate from sequelize to TypeORM (maybe not)
 - [ ] Migrate to microservices (later on)
 - [ ] Create frontend
 - [ ] Create PWA
