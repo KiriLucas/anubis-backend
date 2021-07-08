@@ -36,15 +36,14 @@ As for now, only the backend will be done, but I do intend on creating a fronten
 <hr/>
 
 ## <p align="left" style="color: crimson">Development Stage</p>
-1. Main entities: ![Progress](https://progress-bar.dev/90/)
+1. Main entities: ![Progress](https://progress-bar.dev/85/)
    <br/>- Heroes
    <br/>- NPCs
    <br/>- Skills
-   <br/>- Monsters
    <br/>- Items
    <br/>- Users
    <br/>
-2. Main mechanisms: ![Progress](https://progress-bar.dev/15/)
+2. Main mechanisms: ![Progress](https://progress-bar.dev/25/)
    <br/>- Atributes (+ HP/MP management)
    <br/>- Inventory
    <br/>- Equipment
