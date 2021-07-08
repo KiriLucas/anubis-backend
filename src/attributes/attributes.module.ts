@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
-import { AuthGuard } from "src/system/authentication/guards/auth.guard";
 import { AttributesController } from "./attributes.controller";
 import { AttributesModel } from "./attributes.model";
 import { AttributesService } from "./attributes.service";
@@ -22,7 +21,7 @@ import { AttributesService } from "./attributes.service";
     SequelizeModule.forFeature([AttributesModel]),
   ],
   controllers: [AttributesController],
-  providers: [AttributesService, AuthGuard],
+  providers: [AttributesService],
   exports: [AttributesService]
 })
 export class AttributesModule { }

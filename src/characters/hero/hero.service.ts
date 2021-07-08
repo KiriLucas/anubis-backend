@@ -6,7 +6,7 @@ import { DetailedHeroListingDto } from './dtos/detailedHeroListing.dto';
 import { HeroCreationDto } from './dtos/heroCreation.dto';
 import { HeroDto } from './dtos/hero.dto';
 import { HeroModel } from './hero.model';
-import { NewAttributesDto } from 'src/attributes/dtos/newAttributes.dto';
+import { NewAttributesDto } from './dtos/newAttributes.dto';
 import { RequestUtils } from 'src/utils/requests.utils';
 import { Constants } from 'src/utils/constants';
 import { RaceDto } from './dtos/race.dto';

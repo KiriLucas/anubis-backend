@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
-import { AuthGuard } from "../authentication/guards/auth.guard";
 import { UserController } from "./user.controller";
 import { UserModel } from "./user.model";
 import { UserService } from "./user.service";
@@ -24,7 +23,7 @@ import { IsUsernameUniqueValidation } from "./validators/isUsernameUnique.valida
         SequelizeModule.forFeature([UserModel]),
     ],
     controllers: [UserController],
-    providers: [UserService, AuthGuard, IsEmailUniqueValidation, IsUsernameUniqueValidation],
+    providers: [UserService, IsEmailUniqueValidation, IsUsernameUniqueValidation],
     exports: [UserService]
 })
 export class UserModule {}

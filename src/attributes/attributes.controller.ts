@@ -1,21 +1,13 @@
-import { Param } from "@nestjs/common";
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Post } from "@nestjs/common";
 import { AttributesService } from "./attributes.service";
-import { AttributesCreationDto } from "./dtos/attributes.dto";
+import { AttributesCreationDTO } from "./dtos/attributesCreation.dto";
 
 @Controller('attributes')
 export class AttributesController {
     constructor(private readonly attributesService: AttributesService) { }
 
     @Post()
-    async createCharacterAttributes(@Body() newAttributesDto: AttributesCreationDto): Promise<any> {
-        return await this.attributesService.createCharacterAttributes(newAttributesDto)
+    async createCharacterAttributes(@Body() attributesCreationDto: AttributesCreationDTO): Promise<any> { // TODO: change return type
+        return await this.attributesService.createCharacterAttributes(attributesCreationDto)
     }
-
-    // @Get('/:characterId')
-    // async getClassById(@Param('characterId') id: number): Promise<AttributesDto> {
-    //     return this.attributesService.getAttributesByCharacterId(id)
-
-    // }
-
 }
