@@ -12,27 +12,19 @@ import { compare } from "bcrypt"
 export class UserService {
 
     constructor(@InjectModel(UserModel)
-    private userModel: typeof UserModel) {
-    }
+    private userModel: typeof UserModel) {}
 
-    // TODO: Review this whole method... Maybe create a validation class or an utils module? Improve code quality and reduce complexity if possible
     async createUser(userCreationDto: UserCreationDto): Promise<UserModel> {
-
-        // TODO: Create array of errors/error messages, just so every error will be displayed at once
-        if (await this.isEmailUsed(userCreationDto.email)) {
-            throw new HttpException(`${userCreationDto.email} is already being used`, HttpStatus.UNPROCESSABLE_ENTITY)
-        } else if (await this.isUsernameUsed(userCreationDto.username)) {
-            throw new HttpException(`${userCreationDto.username} is already being used`, HttpStatus.UNPROCESSABLE_ENTITY)
-        }
-
-        const newUser = new UserModel();
-        Object.assign(newUser, userCreationDto);
-
+        const newUser = plainToClass(UserModel, userCreationDto)
         return newUser.save();
     }
 
     async getUserByUsername(username: string): Promise<UserModel> {
-        return this.userModel.findOne({ where: { username: username } })
+        return await this.userModel.findOne({ where: { username: username } })
+    }
+
+    async getUserByEmail(email: string): Promise<UserModel> {
+        return await this.userModel.findOne({ where: { email: email } })
     }
 
     async getUserById(id: number): Promise<UserResponseDto> {
@@ -40,8 +32,8 @@ export class UserService {
         return this.getUserResponse(model)
     }
 
-    getToken(model: UserModel){
-        return sign({id: model.id, user: model.username, email: model.email}, process.env.JWT_SECRET)
+    getToken(model: UserModel) {
+        return sign({ id: model.id, user: model.username, email: model.email }, process.env.JWT_SECRET)
     }
 
     getUserResponse(model: UserModel): UserResponseDto {
@@ -59,13 +51,5 @@ export class UserService {
         }
 
         return userModel
-    }
-
-    async isEmailUsed(email: string): Promise<boolean> {
-        return await this.userModel.findOne({ where: { email: email } }) !== null;
-    }
-
-    async isUsernameUsed(username: string): Promise<boolean> {
-        return await this.userModel.findOne({ where: { username: username } }) !== null;
     }
 }

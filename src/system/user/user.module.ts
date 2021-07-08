@@ -5,6 +5,8 @@ import { AuthGuard } from "../authentication/guards/auth.guard";
 import { UserController } from "./user.controller";
 import { UserModel } from "./user.model";
 import { UserService } from "./user.service";
+import { IsEmailUniqueValidation } from "./validators/isEmailUnique.validator";
+import { IsUsernameUniqueValidation } from "./validators/isUsernameUnique.validator";
 
 @Module({
     imports: [    
@@ -22,7 +24,7 @@ import { UserService } from "./user.service";
         SequelizeModule.forFeature([UserModel]),
     ],
     controllers: [UserController],
-    providers: [UserService, AuthGuard],
+    providers: [UserService, AuthGuard, IsEmailUniqueValidation, IsUsernameUniqueValidation],
     exports: [UserService]
 })
 export class UserModule {}
