@@ -32,18 +32,17 @@ As for now, only the backend will be done, but I do intend on creating a fronten
 - TypeScript
 - Sequelize
 - MySQL
-- bcrypt (to be replaced)
 <hr/>
 
 ## <p align="left" style="color: crimson">Development Stage</p>
-1. Main entities: ![Progress](https://progress-bar.dev/85/)
+1. Main entities: ![Progress](https://progress-bar.dev/80/)
    <br/>- Heroes
    <br/>- NPCs
    <br/>- Skills
    <br/>- Items
    <br/>- Users
    <br/>
-2. Main mechanisms: ![Progress](https://progress-bar.dev/25/)
+2. Main mechanisms: ![Progress](https://progress-bar.dev/15/)
    <br/>- Atributes (+ HP/MP management)
    <br/>- Inventory
    <br/>- Equipment
