@@ -1,3 +1,4 @@
+import { Post } from "@nestjs/common";
 import { Controller, Get, Param } from "@nestjs/common";
 import { AddItemDTO } from "./dtos/addItem.dto";
 import { InventoryInfoDTO } from "./dtos/inventoryInfo.dto";
@@ -8,10 +9,12 @@ import { InventoryService } from "./inventory.service";
 export class InventoryController {
     constructor(private readonly inventoryService: InventoryService) { }
 
+    @Post('/add')
     async addItemToCharacterInventory(addItem: AddItemDTO) {
         return this.inventoryService.addItemToCharacterInventory(addItem);
     }
 
+    @Post('/remove')
     async removeItemFromCharacterInventory(removeItem: RemoveItemDTO) {
         return this.inventoryService.removeItemFromCharacterInventory(removeItem)
     }
