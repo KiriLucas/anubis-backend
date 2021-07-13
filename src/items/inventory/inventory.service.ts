@@ -14,7 +14,7 @@ export class InventoryService {
         //search for item id and fill ItemDTO with it
         //get character attributes for carryingCapacity
         //get character current weight (sum all items on inventory), can't add above the max weight
-        // currentWeight/carryingCapacity || CURRENT/MAX || 120/300
+        //currentWeight/carryingCapacity || CURRENT/MAX || 120/300
 
         //if item exists and player is not overweighted, adds item to ItemModel with characterId
     }
