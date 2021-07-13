@@ -10,21 +10,13 @@ export class InventoryService {
 
     constructor(@InjectModel(InventoryModel) private inventoryModel: typeof InventoryModel) { }
 
-    async addItemToCharacterInventory(addItem: AddItemDTO) {
-        //search for item id and fill ItemDTO with it
-        //get character attributes for carryingCapacity
-        //get character current weight (sum all items on inventory), can't add above the max weight
-        //currentWeight/carryingCapacity || CURRENT/MAX || 120/300
-
-        //if item exists and player is not overweighted, adds item to ItemModel with characterId
+    async giveItem(item: AddItemDTO, characterId) {
     }
 
-    async removeItemFromCharacterInventory(removeItem: RemoveItemDTO) {
-
-        //if player has item, removes it from ItemModel based on characterId
+    async removeItem(item: RemoveItemDTO) {
     }
 
-    async getInventoryInfo(characterId: number): Promise<InventoryInfoDTO> {
+    async getInventory(characterId: number): Promise<InventoryInfoDTO> {
         return "" as any
     }
 
