@@ -8,7 +8,7 @@ import { InventoryModel } from "./inventory.model";
 @Injectable()
 export class InventoryService {
 
-    constructor(@InjectModel(InventoryModel) private itemsModel: typeof InventoryModel) { }
+    constructor(@InjectModel(InventoryModel) private inventoryModel: typeof InventoryModel) { }
 
     async addItemToCharacterInventory(addItem: AddItemDTO) {
         //search for item id and fill ItemDTO with it
