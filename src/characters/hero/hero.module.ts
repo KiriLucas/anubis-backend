@@ -5,6 +5,7 @@ import { RequestUtils } from 'src/utils/requests.utils';
 import { HeroController } from './hero.controller';
 import { HeroModel } from './hero.model';
 import { HeroService } from './hero.service';
+import { IntegrationService } from './integration.service';
 
 
 @Module({
@@ -24,6 +25,6 @@ import { HeroService } from './hero.service';
         SequelizeModule.forFeature([HeroModel]),
     ],
     controllers: [HeroController],
-    providers: [HeroService, RequestUtils],
+    providers: [HeroService, RequestUtils, IntegrationService],
 })
 export class HeroModule { }

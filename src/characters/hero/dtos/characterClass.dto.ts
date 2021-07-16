@@ -8,6 +8,9 @@ export class ClassDto {
     
     @Expose()
     name: string;
+
+    @Expose()
+    energyType: string;
     
     @Expose()
     description: string;

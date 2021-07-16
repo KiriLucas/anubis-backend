@@ -16,7 +16,7 @@ export class RaceService {
     }
 
     async getRaceById(id: number): Promise<RaceListingDto> {
-        return this.raceModel.findOne({ where: { id: id } })
+        return await this.raceModel.findOne({ where: { id: id } })
     }
 
     async getRaceList(): Promise<RaceListingDto[]> {

@@ -20,7 +20,7 @@ export class RaceController {
 
     @Get('/:raceId')
     async getRaceById(@Param('raceId') id: number): Promise<any> {
-        return this.raceService.getRaceById(id)
+        return await this.raceService.getRaceById(id)
 
     }
 

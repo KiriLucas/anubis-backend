@@ -11,13 +11,16 @@ import { RequestUtils } from 'src/utils/requests.utils';
 import { Constants } from 'src/utils/constants';
 import { RaceDto } from './dtos/race.dto';
 import { ClassDto } from './dtos/characterClass.dto';
+import { User } from 'src/system/user/decorators/user.decorator';
+import { IntegrationService } from './integration.service';
 
 @Injectable()
 export class HeroService {
 
     constructor(@InjectModel(HeroModel) private heroModel: typeof HeroModel,
         private httpService: HttpService,
-        private requestUtils: RequestUtils) { }
+        private requestUtils: RequestUtils,
+        private integration: IntegrationService) { }
 
     async getRawHeroList(): Promise<HeroDto[]> {
         const hero = plainToClass(HeroDto, await this.heroModel.findAll())
@@ -68,11 +71,8 @@ export class HeroService {
     async createHero(hero: HeroCreationDto, user: UserResponseDto) {
 
         // TODO: Create validator class
-        // const raceRequest = await this.requestUtils.requestObjectGet(Constants.GET_RACE, heroCreationDto.raceId, user)
-        // const classRequest = await this.requestUtils.requestObjectGet(Constants.GET_CLASS, heroCreationDto.classId, user)
-
-        const characterRace: RaceDto = await (await this.httpService.get(`${process.env.URL}${Constants.GET_RACE}${hero.raceId}`, await this.requestUtils.getHeader(user)).toPromise()).data
-        const characterClass: ClassDto = await (await this.httpService.get(`${process.env.URL}${Constants.GET_CLASS}${hero.classId}`, await this.requestUtils.getHeader(user)).toPromise()).data
+        const characterRace: RaceDto = await this.integration.getRaceById(hero.raceId, user)
+        const characterClass: ClassDto = await this.integration.getClassById(hero.classId, user)
 
         // TODO: If none of the above are invalid, then:
         const model = plainToClass(this.heroModel, hero)
@@ -80,18 +80,16 @@ export class HeroService {
         model.createdBy = user.id
 
         try {
-            const characterModel = await model.save()
-            const character = plainToClass(HeroDto, characterModel)
-            character.energyType = "2"; // TODO: Set it to energytype from characterClass
+            const character = plainToClass(HeroDto, await model.save())
+            character.energyType = characterClass.energyType
 
-            const attributesRequest = await this.requestUtils.requestObjectPost(Constants.CREATE_ATTRIBUTES, user)
-            // const characterAttributes = this.setAttributesForCreation(character.heroId, characterRace, characterClass);
+            const characterAttributes = this.setAttributesForCreation(character.heroId, characterRace, characterClass);
+            return characterAttributes as any
+            await this.integration.createAttributes(characterAttributes, character, user)
 
-            // await (await this.httpService.post(attributesRequest.url, {characterAttributes, character}, attributesRequest.header).toPromise()).data
-
-            return `Hero was created by ${user.username} - Hero id: ${character.heroId}`
+            return `Character was created by ${user.username} - Hero id: ${character.heroId}`
         } catch (error) {
-            return `error ${error}`
+            return `Character creation failed because: ${error}`
         }
     }
 

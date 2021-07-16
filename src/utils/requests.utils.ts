@@ -12,7 +12,7 @@ export class RequestUtils {
         return requestUrl
     }
 
-    getHeader(user: UserResponseDto) {
+    async getHeader(user: UserResponseDto) {
         return { headers: { 'Authorization': `Token ${user.token}` } }
     }
 
