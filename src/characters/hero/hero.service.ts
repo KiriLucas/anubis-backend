@@ -65,17 +65,17 @@ export class HeroService {
         return detailedList
     }
 
-    async createHero(heroCreationDto: HeroCreationDto, user: UserResponseDto) {
+    async createHero(hero: HeroCreationDto, user: UserResponseDto) {
 
         // TODO: Create validator class
-        const raceRequest = await this.requestUtils.requestObjectGet(Constants.GET_RACE, heroCreationDto.raceId, user)
-        const classRequest = await this.requestUtils.requestObjectGet(Constants.GET_CLASS, heroCreationDto.classId, user)
+        // const raceRequest = await this.requestUtils.requestObjectGet(Constants.GET_RACE, heroCreationDto.raceId, user)
+        // const classRequest = await this.requestUtils.requestObjectGet(Constants.GET_CLASS, heroCreationDto.classId, user)
 
-        const characterRace: RaceDto = await (await this.httpService.get(raceRequest.url, raceRequest.header).toPromise()).data
-        const characterClass: ClassDto = await (await this.httpService.get(classRequest.url, classRequest.header).toPromise()).data
+        const characterRace: RaceDto = await (await this.httpService.get(`${process.env.URL}${Constants.GET_RACE}${hero.raceId}`, await this.requestUtils.getHeader(user)).toPromise()).data
+        const characterClass: ClassDto = await (await this.httpService.get(`${process.env.URL}${Constants.GET_CLASS}${hero.classId}`, await this.requestUtils.getHeader(user)).toPromise()).data
 
         // TODO: If none of the above are invalid, then:
-        const model = plainToClass(this.heroModel, heroCreationDto)
+        const model = plainToClass(this.heroModel, hero)
         model.userId = user.id
         model.createdBy = user.id
 
@@ -85,9 +85,9 @@ export class HeroService {
             character.energyType = "2"; // TODO: Set it to energytype from characterClass
 
             const attributesRequest = await this.requestUtils.requestObjectPost(Constants.CREATE_ATTRIBUTES, user)
-            const characterAttributes = this.setAttributesForCreation(character.heroId, characterRace, characterClass);
+            // const characterAttributes = this.setAttributesForCreation(character.heroId, characterRace, characterClass);
 
-            await (await this.httpService.post(attributesRequest.url, {characterAttributes, character}, attributesRequest.header).toPromise()).data
+            // await (await this.httpService.post(attributesRequest.url, {characterAttributes, character}, attributesRequest.header).toPromise()).data
 
             return `Hero was created by ${user.username} - Hero id: ${character.heroId}`
         } catch (error) {

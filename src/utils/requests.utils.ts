@@ -12,6 +12,10 @@ export class RequestUtils {
         return requestUrl
     }
 
+    getHeader(user: UserResponseDto) {
+        return { headers: { 'Authorization': `Token ${user.token}` } }
+    }
+
     async requestObjectPost(service: string, user: UserResponseDto) {
         const requestUrl = {
             url:
