@@ -10,10 +10,10 @@ export class InventoryService {
 
     constructor(@InjectModel(InventoryModel) private inventoryModel: typeof InventoryModel) { }
 
-    async giveItem(item: AddItemDTO, characterId) {
+    async addItemToCharacterInventory(item: AddItemDTO) {
     }
 
-    async removeItem(item: RemoveItemDTO) {
+    async removeItemFromCharacterInventory(item: RemoveItemDTO) {
     }
 
     async getInventory(characterId: number): Promise<InventoryInfoDTO> {

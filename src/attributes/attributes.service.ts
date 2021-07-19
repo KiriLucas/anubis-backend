@@ -13,7 +13,6 @@ export class AttributesService {
 
     async getCharacterAttributes(characterId: number){
         const teste = await this.attributesModel.findOne({ where: {characterId: characterId} })
-        console.log(teste)
         return await this.attributesModel.findOne({ where: {characterId: characterId} })
     }
 

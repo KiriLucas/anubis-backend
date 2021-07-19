@@ -9,18 +9,18 @@ import { InventoryService } from "./inventory.service";
 export class InventoryController {
     constructor(private readonly inventoryService: InventoryService) { }
 
-    // @Post('/add')
-    // async addItemToCharacterInventory(addItem: AddItemDTO) {
-    //     return this.inventoryService.addItemToCharacterInventory(addItem);
-    // }
+    @Post('/add')
+    async addItemToCharacterInventory(addItem: AddItemDTO) {
+        return this.inventoryService.addItemToCharacterInventory(addItem);
+    }
 
-    // @Post('/remove')
-    // async removeItemFromCharacterInventory(removeItem: RemoveItemDTO) {
-    //     return this.inventoryService.removeItemFromCharacterInventory(removeItem)
-    // }
+    @Post('/remove')
+    async removeItemFromCharacterInventory(removeItem: RemoveItemDTO) {
+        return this.inventoryService.removeItemFromCharacterInventory(removeItem)
+    }
 
-    // @Get(':/characterId')
-    // async getInventoryInfo(@Param('characterId') id: number): Promise<InventoryInfoDTO> {
-    //     return this.inventoryService.getInventoryInfo(id)
-    // }
+    @Get(':/characterId')
+    async getInventory(@Param('characterId') id: number): Promise<InventoryInfoDTO> {
+        return this.inventoryService.getInventory(id)
+    }
 }
