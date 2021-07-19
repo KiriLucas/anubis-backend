@@ -46,7 +46,7 @@
 
 - [ ] Replace all single quotes with double quotes
 - [ ] Migrate to microservices (later on)
-- [ ] Create frontend
+- [X] Create frontend
 - [ ] Create PWA
 - [x] Connect application to database (sequelize)
 - [X] Create safety rules to repository

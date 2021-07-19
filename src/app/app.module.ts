@@ -8,6 +8,7 @@ import { RaceModule } from 'src/races/race.module';
 import { ClassModule } from 'src/classes/rclass.module';
 import { AttributesModule } from 'src/attributes/attributes.module';
 import { InventoryModule } from 'src/inventory/inventory.module';
+import { ItemModule } from 'src/items/item.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { InventoryModule } from 'src/inventory/inventory.module';
     RaceModule,
     ClassModule,
     AttributesModule,
-    InventoryModule
+    InventoryModule,
+    ItemModule
   ],
   controllers: [],
   providers: []
