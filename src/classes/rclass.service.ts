@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { plainToClass } from "class-transformer";
 import { ClassCreationDto } from "./dtos/classCreation.dto";
@@ -16,6 +16,9 @@ export class ClassService {
     }
 
     async getClassById(id: number): Promise<ClassListingDto> {
+
+        const rclass = await this.classModel.findOne({ where: { id: id } })
+
         return this.classModel.findOne({ where: { id: id } })
     }
 

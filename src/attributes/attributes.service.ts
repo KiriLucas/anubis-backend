@@ -11,6 +11,11 @@ export class AttributesService {
 
     constructor(@InjectModel(AttributesModel) private attributesModel: typeof AttributesModel) { }
 
+    async getCharacterAttributes(characterId: number){
+        const teste = await this.attributesModel.findOne({ where: {characterId: characterId} })
+        return await this.attributesModel.findOne({ where: {characterId: characterId} })
+    }
+
     async createCharacterAttributes(attributesCreationDto: AttributesCreationDTO): Promise<any> { // TODO: Change return type
         const model = plainToClass(AttributesModel, await this.setAttributesOnCreation(attributesCreationDto))
         return model.save()

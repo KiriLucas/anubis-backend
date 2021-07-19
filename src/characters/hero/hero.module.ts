@@ -2,9 +2,11 @@ import { HttpModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { RequestUtils } from 'src/utils/requests.utils';
+import { CharacterValidator } from './characterValidator.service';
 import { HeroController } from './hero.controller';
 import { HeroModel } from './hero.model';
 import { HeroService } from './hero.service';
+import { IntegrationService } from './integration.service';
 
 
 @Module({
@@ -24,6 +26,6 @@ import { HeroService } from './hero.service';
         SequelizeModule.forFeature([HeroModel]),
     ],
     controllers: [HeroController],
-    providers: [HeroService, RequestUtils],
+    providers: [HeroService, RequestUtils, IntegrationService, CharacterValidator],
 })
 export class HeroModule { }

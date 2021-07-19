@@ -20,7 +20,7 @@ export class InventoryController {
     }
 
     @Get(':/characterId')
-    async getInventoryInfo(@Param('characterId') id: number): Promise<InventoryInfoDTO> {
-        return this.inventoryService.getInventoryInfo(id)
+    async getInventory(@Param('characterId') id: number): Promise<InventoryInfoDTO> {
+        return this.inventoryService.getInventory(id)
     }
 }
