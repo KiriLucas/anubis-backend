@@ -1,6 +1,8 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
+import { ItemCategoryModel } from "./category.model";
+import { ItemCategoryService } from "./category.service";
 import { ItemController } from "./item.controller";
 import { ItemModel } from "./item.model";
 import { ItemService } from "./item.service";
@@ -18,9 +20,9 @@ import { ItemService } from "./item.service";
       autoLoadModels: true,
       synchronize: true,
     }),
-    SequelizeModule.forFeature([ItemModel]),
+    SequelizeModule.forFeature([ItemModel, ItemCategoryModel]),
   ],
   controllers: [ItemController],
-  providers: [ItemService]
+  providers: [ItemService, ItemCategoryService]
 })
 export class ItemModule { }
