@@ -15,9 +15,6 @@ export class ItemModel extends Model {
     @Column({type: DataType.BOOLEAN, allowNull: false})
     isEdible: boolean;
 
-    @Column({type: DataType.INTEGER, allowNull: false})
-    damageType: number;
-
     @Column({type: DataType.INTEGER, allowNull: false, defaultValue: 0})
     physicalDamage: number;
 

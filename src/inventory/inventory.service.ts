@@ -11,6 +11,7 @@ export class InventoryService {
     constructor(@InjectModel(InventoryModel) private inventoryModel: typeof InventoryModel) { }
 
     async addItemToCharacterInventory(item: AddItemDTO) {
+        
     }
 
     async removeItemFromCharacterInventory(item: RemoveItemDTO) {
