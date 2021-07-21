@@ -56,7 +56,7 @@ The main goal here is to create a tool that's capable of:
    <br/>- Items
    <br/>- Users
    <br/>
-3. Main mechanisms: ![Progress](https://progress-bar.dev/15/)
+3. Main mechanisms: ![Progress](https://progress-bar.dev/40/)
    <br/>- Atributes (+ HP/MP management)
    <br/>- Inventory
    <br/>- Equipment
