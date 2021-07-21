@@ -12,12 +12,12 @@
   - [X] Skills
   - [X] Users
   - [X] Authentication
-  - [ ] Items in general
-    - [ ] Coins 
-    - [ ] Equipments
-    - [ ] Weapons
-    - [ ] Ingredients
-    - [ ] Misc 
+  - [X] Items in general
+    - [X] Coins 
+    - [X] Equipments
+    - [X] Weapons
+    - [x] Ingredients
+    - [X] Misc 
   - [ ] Monsters
   - [ ] Locations
 
