@@ -3,7 +3,6 @@ export class ItemDTO {
     category: number;
     isEquippable: boolean;
     isEdible: boolean;
-    damageType: number;
     physicalDamage: number;
     physicalDefense: number;
     magicDamage: number;
@@ -12,7 +11,7 @@ export class ItemDTO {
     effectB: number;
     effectC: number;
     effectD: number;
-    value: number
+    value: number;
     description: string;
     weight: number;
 }

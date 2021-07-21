@@ -7,10 +7,10 @@ import { ItemService } from "./item.service";
 export class ItemController {
     constructor(private readonly itemService: ItemService) { }
 
-    @Post('/create')
+    @Post()
     async createItem(@Body() item: ItemDTO) {
         return this.itemService.createItem(item)
-    }
+    } 
 
     @Post('/category')
     async createItemCategory(@Body() category: ItemCategoryDTO){

@@ -1,4 +1,4 @@
-## <p align="center" style="color: crimson">BACKEND | <a href="https://github.com/KiriLucas/anubis-frontend">FRONTEND</a></p> 
+## <p align="center" style="color: crimson">► BACKEND | <a href="https://github.com/KiriLucas/anubis-frontend">FRONTEND</a></p> 
 <p align="center">
   <a href="#" target="blank"><img src="https://i.pinimg.com/originals/45/b8/f0/45b8f060a14fa5fed63324aeb7c2a7f6.png" width="120" alt="" /></a>
   <a href="#" target="blank"><img src="https://i.pinimg.com/originals/19/b9/a6/19b9a6da2d360ff522eb93ff0b871447.png" width="120" alt="" /></a>
