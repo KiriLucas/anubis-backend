@@ -1,3 +1,4 @@
+import { AuthModule } from './../system/authentication/auth.module';
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { HeroModule } from 'src/characters/hero/hero.module';
 import { SkillModule } from 'src/skills/skill.module';
@@ -12,6 +13,7 @@ import { ItemModule } from 'src/items/item.module';
 
 @Module({
   imports: [
+    AuthModule,
     HeroModule,
     SkillModule,
     NpcModule,
@@ -26,7 +28,7 @@ import { ItemModule } from 'src/items/item.module';
   providers: []
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer){
+  configure(consumer: MiddlewareConsumer) {
     consumer.apply(AuthMiddleware).forRoutes({
       path: '*',
       method: RequestMethod.ALL,
