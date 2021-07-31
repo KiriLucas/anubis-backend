@@ -25,8 +25,9 @@ export class UserService {
         return user;
     }
 
-    async getUserByEmail(email: string): Promise<UserModel> {
-        return await this.userModel.findOne({ where: { email: email } })
+    async getUserByEmail(email: string): Promise<UserDto> {
+        const user: UserDto = plainToClass(UserDto, await this.userModel.findOne({ where: { email: email } }))
+        return user
     }
 
     async getUserById(id: number): Promise<UserResponseDto> {

@@ -1,5 +1,5 @@
-import { AuthModule } from './../system/authentication/auth.module';
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
+import { AuthModule } from 'src/system/authentication/auth.module';
 import { HeroModule } from 'src/characters/hero/hero.module';
 import { SkillModule } from 'src/skills/skill.module';
 import { NpcModule } from 'src/characters/npc/npc.module';
@@ -13,7 +13,6 @@ import { ItemModule } from 'src/items/item.module';
 
 @Module({
   imports: [
-    AuthModule,
     HeroModule,
     SkillModule,
     NpcModule,
@@ -22,7 +21,8 @@ import { ItemModule } from 'src/items/item.module';
     ClassModule,
     AttributesModule,
     InventoryModule,
-    ItemModule
+    ItemModule,
+    AuthModule,
   ],
   controllers: [],
   providers: []

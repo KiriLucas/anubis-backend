@@ -22,7 +22,6 @@ export class UserController {
     //     return await this.userService.getUserResponse(user)
     // }
 
-    // Middleware testing
     @Get('user')
     async currentUser(@User() user: UserModel): Promise<UserResponseDto> {
         return this.userService.getUserResponse(user)
