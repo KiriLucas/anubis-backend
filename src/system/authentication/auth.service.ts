@@ -7,7 +7,7 @@ export class AuthService {
     constructor(private userService: UserService) {}
   
     async validateUser(username: string, password: string): Promise<UserDto> {
-      const user: UserDto = await this.userService.getUserByUsername(username);
+      const user: UserDto = await this.userService.getUserByUsername(username); // TODO: Refactor UserDTO so it won't return the user's password
       if (user && user.password === password) {
         return user;
       }

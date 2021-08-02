@@ -28,10 +28,10 @@ import { ItemModule } from 'src/items/item.module';
   providers: []
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes({
-      path: '*',
-      method: RequestMethod.ALL,
-    })
-  }
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer.apply(AuthMiddleware).forRoutes({
+  //     path: '*',
+  //     method: RequestMethod.ALL,
+  //   })
+  // }
 }
