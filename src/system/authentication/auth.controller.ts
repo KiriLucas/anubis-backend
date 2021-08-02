@@ -6,7 +6,7 @@ export class AuthController {
 
     @UseGuards(LocalAuthGuard)
     @Post('/login')
-    async login(@Request() req) {
-      return req.user;
+    async login(@Request() request) {
+      return request.user;
     }
 }
