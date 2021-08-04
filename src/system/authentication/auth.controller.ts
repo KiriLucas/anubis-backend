@@ -2,6 +2,7 @@ import { Controller, Get, Post, Request, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { LocalAuthGuard } from "./guards/local-strategy.guard";
+import { compare } from 'bcrypt';
 
 @Controller('auth')
 export class AuthController {
@@ -16,8 +17,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  getProfile(@Request() request) {
-    console.log(request.user)
+  async getProfile(@Request() request) {
     return request.user;
   }
 }
