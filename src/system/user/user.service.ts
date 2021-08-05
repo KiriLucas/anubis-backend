@@ -7,6 +7,7 @@ import { UserResponseDto } from "./dtos/userResponse.dto";
 import { UserLoginDto } from "./dtos/userLogin.dto";
 import { plainToClass } from "class-transformer";
 import { compare } from "bcrypt"
+import { UserDto } from "./dtos/user.dto";
 
 @Injectable()
 export class UserService {
@@ -19,12 +20,14 @@ export class UserService {
         return newUser.save();
     }
 
-    async getUserByUsername(username: string): Promise<UserModel> {
-        return await this.userModel.findOne({ where: { username: username } })
+    async getUserByUsername(username: string): Promise<UserDto> {
+        const user: UserDto = plainToClass(UserDto, await this.userModel.findOne({ where: { username: username } }))
+        return user;
     }
 
-    async getUserByEmail(email: string): Promise<UserModel> {
-        return await this.userModel.findOne({ where: { email: email } })
+    async getUserByEmail(email: string): Promise<UserDto> {
+        const user: UserDto = plainToClass(UserDto, await this.userModel.findOne({ where: { email: email } }))
+        return user
     }
 
     async getUserById(id: number): Promise<UserResponseDto> {
@@ -43,13 +46,13 @@ export class UserService {
         return userDto;
     }
 
-    async login(loginDto: UserLoginDto): Promise<UserModel> {
-        const userModel = await this.getUserByUsername(loginDto.username)
+    // async login(loginDto: UserLoginDto): Promise<UserModel> {
+    //     const userModel = await this.getUserByUsername(loginDto.username)
 
-        if (!userModel || !await compare(loginDto.password, userModel.password)) {
-            throw new HttpException('Username or password is incorrect', HttpStatus.UNPROCESSABLE_ENTITY)
-        }
+    //     if (!userModel || !await compare(loginDto.password, userModel.password)) {
+    //         throw new HttpException('Username or password is incorrect', HttpStatus.UNPROCESSABLE_ENTITY)
+    //     }
 
-        return userModel
-    }
+    //     return userModel
+    // }
 }

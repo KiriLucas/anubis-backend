@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { UserCreationDto } from "./dtos/userCreation.dto";
 import { UserLoginDto } from "./dtos/userLogin.dto";
 import { UserResponseDto } from "./dtos/userResponse.dto";
@@ -15,16 +15,21 @@ export class UserController {
         return this.userService.getUserResponse(await this.userService.createUser(userCreationDto));
     }
 
-    @Post('/login')
-    async userLogin(@Body() loginDto: UserLoginDto): Promise<UserResponseDto> {
-        const user = await this.userService.login(loginDto)
+    // @Post('/login')
+    // async userLogin(@Body() loginDto: UserLoginDto): Promise<UserResponseDto> {
+    //     const user = await this.userService.login(loginDto)
 
-        return await this.userService.getUserResponse(user)
-    }
+    //     return await this.userService.getUserResponse(user)
+    // }
 
-    // Middlware testing
     @Get('user')
     async currentUser(@User() user: UserModel): Promise<UserResponseDto> {
         return this.userService.getUserResponse(user)
+    }
+
+    @Get('/:id')
+    async getClassById(@Param('id') id: number): Promise<any> {
+        return this.userService.getUserById(id)
+
     }
 }
