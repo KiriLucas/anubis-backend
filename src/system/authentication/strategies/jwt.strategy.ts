@@ -1,6 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
+import { UserDataDTO } from '../dtos/userData.dto';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -12,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    async validate(payload: any) { // TODO: Refactor parameter type and naming
-        return { userId: payload.sub, username: payload.username };
+    async validate(userData: UserDataDTO) { // TODO: Find out why this is being called twice when /auth/profile is called
+        return { userId: userData.sub, username: userData.username };
     }
 }

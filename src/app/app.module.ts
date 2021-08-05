@@ -9,6 +9,8 @@ import { ClassModule } from 'src/classes/rclass.module';
 import { AttributesModule } from 'src/attributes/attributes.module';
 import { InventoryModule } from 'src/inventory/inventory.module';
 import { ItemModule } from 'src/items/item.module';
+import { APP_GUARD } from '@nestjs/core/constants';
+import { JwtAuthGuard } from 'src/system/authentication/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -24,6 +26,9 @@ import { ItemModule } from 'src/items/item.module';
     AuthModule,
   ],
   controllers: [],
-  providers: []
+  providers: [{
+    provide: APP_GUARD,
+    useClass: JwtAuthGuard,
+  },]
 })
-export class AppModule {}
+export class AppModule { }
