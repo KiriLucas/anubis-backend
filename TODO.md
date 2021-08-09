@@ -44,7 +44,6 @@
 
 ### <span style="color: gold">Technical stuff and development improvements</span>
 
-- [ ] Replace all single quotes with double quotes
 - [ ] Migrate to microservices (later on)
 - [X] Create frontend
 - [ ] Create PWA
