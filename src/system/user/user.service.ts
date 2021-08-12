@@ -45,14 +45,4 @@ export class UserService {
 
         return userDto;
     }
-
-    // async login(loginDto: UserLoginDto): Promise<UserModel> {
-    //     const userModel = await this.getUserByUsername(loginDto.username)
-
-    //     if (!userModel || !await compare(loginDto.password, userModel.password)) {
-    //         throw new HttpException('Username or password is incorrect', HttpStatus.UNPROCESSABLE_ENTITY)
-    //     }
-
-    //     return userModel
-    // }
 }
