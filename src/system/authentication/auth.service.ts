@@ -10,13 +10,13 @@ export class AuthService {
     constructor(private userService: UserService, private jwtService: JwtService) { }
 
     async validateUser(username: string, password: string): Promise<UserDTO> {
-        const user: UserDTO = await this.userService.getUserByUsername(username); // TODO: Refactor UserDTO so it won't return the user's password
+        const user: UserDTO = await this.userService.getUserByUsername(username); // TODO: Refactor UserDTO so it won't return the user's password anymore
         const isPasswordCorrect = await compare(password, user.password)
 
         return user && isPasswordCorrect ? user : null;
     }
 
-    login(user: UserDTO) { // TODO: Set return type
+    login(user: UserDTO) { // TODO: Change return type
         const jwtPayload: JwtPayloadDTO = { username: user.username, sub: user.id };
 
         return { token: this.jwtService.sign(jwtPayload) };
