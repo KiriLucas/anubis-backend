@@ -49,14 +49,14 @@ The main goal here is to create a tool that's capable of:
    <br/>- Items
    <br/>- Users
    <br/>
-2. Improvements: ![Progress](https://progress-bar.dev/10/)
+2. Improvements: ![Progress](https://progress-bar.dev/15/)
    <br/>- Heroes
    <br/>- NPCs
    <br/>- Skills
    <br/>- Items
    <br/>- Users
    <br/>
-3. Main mechanisms: ![Progress](https://progress-bar.dev/45/)
+3. Main mechanisms: ![Progress](https://progress-bar.dev/50/)
    <br/>- Atributes (+ HP/MP management)
    <br/>- Inventory
    <br/>- Equipment

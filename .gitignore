@@ -6,6 +6,9 @@
 /.vscode
 notes.ts
 
+# Env
+.env
+
 # Logs
 logs
 *.log

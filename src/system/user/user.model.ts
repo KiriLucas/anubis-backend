@@ -24,6 +24,6 @@ export class UserModel extends Model {
 
     @BeforeCreate
     static async hashPassword(instance: UserModel) {
-        instance.password = await hash(instance.password, 10)
+        instance.password = await hash(instance.password, parseInt(process.env.HASH_SALT))
     }
 }
